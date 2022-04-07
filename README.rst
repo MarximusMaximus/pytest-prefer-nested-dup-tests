@@ -1,11 +1,11 @@
-pytest-drop-dup-tests
+pytest-prefer-nested-dup-tests
 ===================================
 
-.. image:: http://img.shields.io/pypi/v/pytest-drop-dup-tests.svg
-   :target: https://pypi.python.org/pypi/pytest-drop-dup-tests
+.. .. image:: http://img.shields.io/pypi/v/pytest-drop-dup-tests.svg
+..    :target: https://pypi.python.org/pypi/pytest-drop-dup-tests
 
-.. image:: https://github.com/nicoddemus/pytest-drop-dup-tests/workflows/main/badge.svg
-  :target: https://github.com/nicoddemus/pytest-drop-dup-tests/actions
+.. .. image:: https://github.com/nicoddemus/pytest-drop-dup-tests/workflows/main/badge.svg
+..   :target: https://github.com/nicoddemus/pytest-drop-dup-tests/actions
 
 
 A Pytest plugin to drop duplicated tests during collection.

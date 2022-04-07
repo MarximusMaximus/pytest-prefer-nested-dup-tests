@@ -1,0 +1,21 @@
+{
+    "cSpell.words": [
+        "bdist",
+        "Cookiecutter",
+        "hackebrot",
+        "makepyfile",
+        "Marximus",
+        "Maximus",
+        "nodeid",
+        "numcollected",
+        "pygments",
+        "pypa",
+        "pypi",
+        "pytest",
+        "pytester",
+        "sdist",
+        "setuptools"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
+}
