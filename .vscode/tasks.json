@@ -6,32 +6,7 @@
         {
             "label": "Clean __pycache__",
             "type": "shell",
-            "command": "find . -name '__pycache__' -or -name '*.pyc' -or -name '*.pyo' -or -name '*.pyd' | xargs rm -rf"
-        },
-        {
-            "type": "script",
-            "scriptType": "python",
-            "path": "",
-            "fileName": "setup.py",
-            "scriptFile": true,
-            "script": "py",
-            "target": "py",
-            "uri": {
-                "$mid": 1,
-                "fsPath": "/Volumes/src with spaces/pytest-prefer-nested-dup-tests/setup.py",
-                "external": "file:///Volumes/src%20with%20spaces/pytest-prefer-nested-dup-tests/setup.py",
-                "path": "/Volumes/src with spaces/pytest-prefer-nested-dup-tests/setup.py",
-                "scheme": "file"
-            },
-            "takesArgs": false,
-            "problemMatcher": [
-                "$msCompile"
-            ],
-            "label": "python: build egg",
-            "group": {
-                "kind": "build",
-                "isDefault": false
-            }
+            "command": "find \"${workspaceFolder}/\" \\( -name '__pycache__' -or -name '*.pyc' -or -name '*.pyo' -or -name '*.pyd' \\) -print0 | xargs -r0 rm -rf"
         }
     ]
 }

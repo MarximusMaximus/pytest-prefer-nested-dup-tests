@@ -3,7 +3,7 @@
 
 import os
 import codecs
-from setuptools import setup
+from setuptools import find_packages, setup
 
 
 def read(fname):
@@ -19,12 +19,13 @@ setup(
     maintainer_email="marximus@marximus.com",
     license="MIT",
     url="https://github.com/MarximusMaximus/pytest-prefer-nested-dup-tests",
-    description="A Pytest plugin to drop duplicated tests during collection, but prefer nested versions",
+    description="A Pytest plugin to drop duplicated tests during collection, but prefer nested package versions",
     long_description=read("README.rst"),
-    py_modules=["pytest_prefer_nested_dup_tests"],
+    # py_modules=["pytest_prefer_nested_dup_tests"],
+    packages=find_packages("src"),
     setup_requires="setuptools_scm",
     use_scm_version=True,
-    install_requires=["pytest>=2.7"],
+    install_requires=["pytest>=7.1.1"],
     classifiers=[
         "Development Status :: 4 - Beta",
         "Framework :: Pytest",
@@ -39,5 +40,5 @@ setup(
         "Operating System :: OS Independent",
         "License :: OSI Approved :: MIT License",
     ],
-    entry_points={"pytest11": ["prefer-nested-dup-tests = pytest_prefer_nested_dup_tests",],},
+    # entry_points={"pytest11": ["prefer-nested-dup-tests = pytest_prefer_nested_dup_tests",],},
 )
