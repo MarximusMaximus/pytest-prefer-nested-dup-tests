@@ -108,6 +108,37 @@ def test_nested_package(testdir):
             ]
         )
         assert result.ret == 0
+
+        result = testdir.runpytest("tests/foo", ".", "--collect-only")
+        result.stdout.fnmatch_lines(
+            [
+                "collected 2 items",
+                "<Package tests>",
+                "  <Package foo>",
+                "    <Module test_foo.py>",
+                "      <Function test_foo>",
+                "  <Package bar>",
+                "    <Module test_bar.py>",
+                "      <Function test_bar>",
+            ]
+        )
+        assert result.ret == 0
     finally:
         # fix up sys.modules to include our "tests" module again (not the one from the temp dir)
         sys.modules["tests"] = sys_modules_tests_old
+
+def test___toplevel_coverage():
+    # this test solely exists to allow coverage.py to see the top level / outermost scope of our code
+    # this is necessary b/c our code gets imported before coverage.py hooks in
+    # we simply "hide" our module from python, import it, and then put it back
+    # we put it back, just in case something had modified it in memory before this test runs
+    old_module = sys.modules["pytest_prefer_nested_dup_tests"]      # keep a reference to it
+    del sys.modules["pytest_prefer_nested_dup_tests"]               # hide it from python
+    import pytest_prefer_nested_dup_tests                           # import it as if new
+    sys.modules["pytest_prefer_nested_dup_tests"] = old_module      # put it back
+
+    # same as above, but for the __impl file
+    old_module = sys.modules["pytest_prefer_nested_dup_tests.__impl"]
+    del sys.modules["pytest_prefer_nested_dup_tests.__impl"]
+    import pytest_prefer_nested_dup_tests.__impl
+    sys.modules["pytest_prefer_nested_dup_tests.__impl"] = old_module
