@@ -16,6 +16,24 @@
         "sdist",
         "setuptools"
     ],
+    "files.associations": {
+        "LICENSE": "plaintext",
+        "setup.cfg": "ini",
+        ".coveragerc": "ini",
+    },
     "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true
+    "python.testing.pytestEnabled": true,
+    "coverage-gutters.showLineCoverage": true,
+    "coverage-gutters.showRulerCoverage": true,
+    "koverage.coverageFileNames": [
+      "lcov.info",
+      "cov.xml",
+      "coverage.xml",
+      "jacoco.xml"
+    ],
+    "koverage.sufficientCoverageThreshold": 100,
+    "koverage.coverageFilePaths": [
+      ".",
+      "coverage"
+    ]
 }
