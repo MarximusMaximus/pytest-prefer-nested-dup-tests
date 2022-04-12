@@ -7,6 +7,12 @@
             "label": "Clean __pycache__",
             "type": "shell",
             "command": "find \"${workspaceFolder}/\" \\( -name '__pycache__' -or -name '*.pyc' -or -name '*.pyo' -or -name '*.pyd' \\) -print0 | xargs -r0 rm -rf"
+        },
+        {
+            "label": "View Coverage HTML",
+            "type": "Live Preview",
+            "args": [],
+            "problemMatcher": [],
         }
     ]
 }

@@ -35,5 +35,6 @@
     "koverage.coverageFilePaths": [
       ".",
       "coverage"
-    ]
+    ],
+    "livePreview.defaultPreviewPath": "/htmlcov/index.html"
 }
