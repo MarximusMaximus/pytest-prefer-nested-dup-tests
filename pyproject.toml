@@ -42,8 +42,8 @@ pytest = "^7.1.1"
 
 [tool.poetry.dev-dependencies]
 pytest-cov = "^3.0.0"
-pytest-xdist = "^2.5.0"
 pipdeptree = "^2.2.1"
+tox = "^3.25.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -57,8 +57,6 @@ xfail_strict = true
 addopts = [
   # report details (verbose)
   "-v",
-  # xdist - number of parallel test executors
-  "-n=auto",
   # report the local variables for every failure with the stacktrace
   "-l",
   # report the reasons for all tests that skipped, xfailed, xpassed, etc EXCEPT passed/Passed w/ Output
