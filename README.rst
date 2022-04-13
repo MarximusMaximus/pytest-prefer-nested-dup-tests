@@ -22,7 +22,6 @@ This plugin is intended for the cases where the user wants to run all tests
 from ``tests/unit`` first and then the rest of the tests under ``tests``,
 without duplicates.
 
-This plugin was born from the discussion taken in `#1187`_.
 
 Installation
 ------------
