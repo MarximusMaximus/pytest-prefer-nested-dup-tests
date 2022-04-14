@@ -7,7 +7,7 @@ authors = ["Marximus Maximus <marximus@marximus.com>"]
 license = "MIT"
 maintainers = ["Marximus Maximus <marximus@marximus.com>"]
 readme = "README.rst"
-homepage = "https://www.marximus.com"
+homepage = "https://github.com/MarximusMaximus/pytest-prefer-nested-dup-tests"
 repository = "https://github.com/MarximusMaximus/pytest-prefer-nested-dup-tests"
 documentation = "https://github.com/MarximusMaximus/pytest-prefer-nested-dup-test"
 classifiers = [
@@ -16,7 +16,6 @@ classifiers = [
     "Intended Audience :: Developers",
     "Topic :: Software Development :: Testing",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
@@ -31,6 +30,8 @@ include = [
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/MarximusMaximus/pytest-prefer-nested-dup-tests/issues"
+"Source" = "https://github.com/MarximusMaximus/pytest-prefer-nested-dup-test"
+"Documentation" = "https://github.com/MarximusMaximus/pytest-prefer-nested-dup-test"
 
 [tool.poetry.plugins]
 [tool.poetry.plugins."pytest11"]
