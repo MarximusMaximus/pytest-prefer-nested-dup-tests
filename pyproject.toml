@@ -37,7 +37,7 @@ include = [
 "prefer-nested-dup-tests" = "pytest_prefer_nested_dup_tests"
 
 [tool.poetry.dependencies]
-python = ">=3.7"
+python = ">=3.8"
 pytest = "^7.1.1"
 
 [tool.poetry.dev-dependencies]
