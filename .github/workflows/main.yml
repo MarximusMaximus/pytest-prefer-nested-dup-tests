@@ -81,7 +81,7 @@ jobs:
       - name: Setup miniforge
         uses: goanpeca/setup-miniconda@v1
         with:
-          installer-url: https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-${{ conda-forge-os }}-${{ conda-forge-arch }}.${{ conda-forge-ext }}
+          installer-url: https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-${{ matrix.conda-forge-os }}-${{ matrix.conda-forge-arch }}.${{ matrix.conda-forge-ext }}
           python-version: ${{ env.PYTHON_LATEST }}
           allow-softlinks: true
           show-channel-urls: true
