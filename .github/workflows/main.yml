@@ -2,10 +2,6 @@ name: main
 
 on: [push, workflow_dispatch]
 
-env:
-  PYTHON_LATEST: 3.10
-  CONDA_ENV_NAME: work
-
 defaults:
   run:
     shell: bash -l {0}
@@ -43,9 +39,9 @@ jobs:
           - tox-env: py310
             python-version: "3.10"
           - tox-env: linting
-            python-version: "${{ PYTHON_LATEST }}"
+            python-version: "3.10"
           - tox-env: coverage
-            python-version: "${{ PYTHON_LATEST }}"
+            python-version: "3.10"
 
           # set vars for conda-forge (conda-forge-os)
           - os: ubuntu-latest
@@ -99,16 +95,16 @@ jobs:
 
       - name: Conda Env Setup
         run: |
-          conda env create --name ${{ env.CONDA_ENV_NAME } --file ./conda-environment.yml -v
+          conda env create --name work --file ./conda-environment.yml -v
 
       - name: Poetry Dependencies
         run: |
-          conda activate ${{ env.CONDA_ENV_NAME }
+          conda activate work
           poetry install
 
       - name: Test
         run: |
-          conda activate ${{ env.CONDA_ENV_NAME }
+          conda activate work
           tox -e ${{ matrix.tox-env }}
 
 
