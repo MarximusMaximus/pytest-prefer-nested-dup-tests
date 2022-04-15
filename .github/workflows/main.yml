@@ -1,6 +1,6 @@
 name: main
 
-on: [push, workflow_dispatch]
+on: [push, workflow_dispatch, pull_request]
 
 defaults:
   run:
@@ -8,13 +8,21 @@ defaults:
 
 jobs:
   test:
-    # name: ${{ matrix.os }}) - Python ${{ matrix.python-version }}
+    name: Test - ${{ matrix.os }}) - Python ${{ matrix.python-version }}
     strategy:
-      # fail-fast: false
-      # max-parallel: 4
+      fail-fast: false
+      max-parallel: 4
       matrix:
-        os: [ubuntu-latest, window-latest, macos-latest]
-        tox-env: [py38, py39, py310]
+        os: [
+          ubuntu-latest,
+          windows-latest,
+          macos-latest,
+        ]
+        tox-env: [
+          py38,
+          py39,
+          py310,
+        ]
         include:
           # create additional matrix entries for ubuntu & tox_env
           - tox-env: lint
