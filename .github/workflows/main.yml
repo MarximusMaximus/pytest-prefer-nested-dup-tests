@@ -44,27 +44,22 @@ jobs:
           - tox-env: py310
             python-version: "3.10"
 
-          # set vars for conda-forge (conda-forge-os & conda-forge-ext)
-          - os: ubuntu-latest
-            conda-forge-os: Linux
-            conda-forge-ext: sh
-          - os: windows-latest
-            conda-forge-os: Windows
-            conda-forge-ext: exe
-          - os: macos-latest
-            conda-forge-os: MacOSX
-            conda-forge-ext: sh
-
           # set vars for os & conda-forge
           - friendly-os: ubuntu-latest-x64
             os: ubuntu-latest
-            # conda-forge-arch: X86_64
+            conda-forge-os: Linux
+            conda-forge-arch: X86_64
+            conda-forge-ext: sh
           - friendly-os: windows-latest-x64
             os: windows-latest
-            # conda-forge-arch: X86_64
+            conda-forge-os: Windows
+            conda-forge-arch: X86_64
+            conda-forge-ext: exe
           - friendly-os: macos-latest-x64
             os: macos-latest
-            # conda-forge-arch: X86_64
+            conda-forge-os: MacOSX
+            conda-forge-arch: X86_64
+            conda-forge-ext: sh
 
     runs-on: ${{ matrix.os }}
 
