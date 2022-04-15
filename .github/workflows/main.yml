@@ -94,6 +94,12 @@ jobs:
         run: |
           echo OS: ${{ runner.os }}
           echo ARCH: ${{ runner.arch }}
+          echo matrix:
+          echo os: ${{ matrix.os }}
+          echo conda-forge-os: ${{ matrix.conda-forge-os }}
+          echo conda-forge-ext: ${{ matrix.conda-forge-ext }}
+          echo conda-forge-arch: ${{ matrix.conda-forge-arch }}
+          echo tox-env: ${{ matrix.tox-env }}
       - name: Setup miniforge
         uses: conda-incubator/setup-miniconda@v2.1.1
         with:
