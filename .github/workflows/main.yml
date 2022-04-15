@@ -44,18 +44,23 @@ jobs:
           - tox-env: py310
             python-version: "3.10"
 
-          # set vars for conda-forge (conda-forge-os)
+          # set vars for conda-forge (conda-forge-os & conda-forge-ext)
           - os: ubuntu-latest
             conda-forge-os: Linux
+            conda-forge-ext: sh
           - os: windows-latest
             conda-forge-os: Windows
+            conda-forge-ext: exe
           - os: macos-latest
             conda-forge-os: MacOSX
+            conda-forge-ext: sh
 
           # set vars for conda-forge (conda-forge-arch)
           - runner.arch: X86
+            os: [ubuntu-latest, windows-latest, macos-latest]
             conda-forge-arch: X86_64
           - runner.arch: X64
+            os: [ubuntu-latest, windows-latest, macos-latest]
             conda-forge-arch: X86_64
           - runner.arch: ARM
             os: ubuntu-latest
@@ -69,13 +74,6 @@ jobs:
             # cspell: disable-next-line
             conda-forge-arch: aarch64
 
-          # set vars for conda-forge (conda-forge-ext)
-          - os: ubuntu-latest
-            conda-forge-ext: sh
-          - os: windows-latest
-            conda-forge-ext: exe
-          - os: macos-latest
-            conda-forge-ext: sh
     runs-on: ${{ matrix.os }}
 
     steps:
