@@ -72,7 +72,7 @@ jobs:
           # set vars for conda-forge (conda-forge-ext)
           - os: ubuntu-latest
             conda-forge-ext: sh
-          - os: window-latest
+          - os: windows-latest
             conda-forge-ext: exe
           - os: macos-latest
             conda-forge-ext: sh
