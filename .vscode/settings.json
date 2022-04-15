@@ -3,10 +3,13 @@
         "bdist",
         "conda",
         "Cookiecutter",
+        "goanpeca",
         "hackebrot",
         "makepyfile",
         "Marximus",
         "Maximus",
+        "miniconda",
+        "miniforge",
         "nodeid",
         "numcollected",
         "pygments",
@@ -15,7 +18,8 @@
         "pytest",
         "pytester",
         "sdist",
-        "setuptools"
+        "setuptools",
+        "softlinks"
     ],
     "files.eol": "\n",
     "files.insertFinalNewline": true,
