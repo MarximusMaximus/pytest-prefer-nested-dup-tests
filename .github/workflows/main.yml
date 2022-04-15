@@ -52,22 +52,22 @@ jobs:
           - os: macos-latest
             conda-forge-os: MacOSX
 
-          # # set vars for conda-forge (conda-forge-arch)
-          # - runner.arch: X86
-          #   conda-forge-arch: X86_64
-          # - runner.arch: X64
-          #   conda-forge-arch: X86_64
-          # - runner.arch: ARM
-          #   os: ubuntu-latest
-          #   # cspell: disable-next-line
-          #   conda-forge-arch: aarch64
-          # - runner.arch: ARM
-          #   os: macos-latest
-          #   conda-forge-arch: arm64
-          # - runner.arch: ARM64
-          #   os: ubuntu-latest
-          #   # cspell: disable-next-line
-          #   conda-forge-arch: aarch64
+          # set vars for conda-forge (conda-forge-arch)
+          - runner.arch: X86
+            conda-forge-arch: X86_64
+          - runner.arch: X64
+            conda-forge-arch: X86_64
+          - runner.arch: ARM
+            os: ubuntu-latest
+            # cspell: disable-next-line
+            conda-forge-arch: aarch64
+          - runner.arch: ARM
+            os: macos-latest
+            conda-forge-arch: arm64
+          - runner.arch: ARM64
+            os: ubuntu-latest
+            # cspell: disable-next-line
+            conda-forge-arch: aarch64
 
           # set vars for conda-forge (conda-forge-ext)
           - os: ubuntu-latest
