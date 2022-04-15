@@ -17,10 +17,10 @@ jobs:
       fail-fast: false
       max-parallel: 4
       matrix:
-        os: [
-          ubuntu-latest,
-          windows-latest,
-          macos-latest,
+        friendly-os: [
+          ubuntu-latest-x64,
+          windows-latest-x64,
+          macos-latest-x64,
         ]
         tox-env: [
           py38,
@@ -30,10 +30,10 @@ jobs:
         include:
           # create additional matrix entries for ubuntu & tox_env
           - tox-env: lint
-            os: ubuntu-latest
+            friendly-os: ubuntu-latest-x64
             python-version: "3.10"
           - tox-env: coverage
-            os: ubuntu-latest
+            friendly-os: ubuntu-latest-x64
             python-version: "3.10"
 
           # set vars for tox-env
@@ -55,36 +55,16 @@ jobs:
             conda-forge-os: MacOSX
             conda-forge-ext: sh
 
-          # set vars for conda-forge (conda-forge-arch)
-          - runner.arch: X86
+          # set vars for os & conda-forge
+          - friendly-os: ubuntu-latest-x64
             os: ubuntu-latest
             conda-forge-arch: X86_64
-          - runner.arch: X86
+          - friendly-os: windows-latest-x64
             os: windows-latest
             conda-forge-arch: X86_64
-          - runner.arch: X86
+          - friendly-os: macos-latest-x64
             os: macos-latest
             conda-forge-arch: X86_64
-          - runner.arch: X64
-            os: ubuntu-latest
-            conda-forge-arch: X86_64
-          - runner.arch: X64
-            os: windows-latest
-            conda-forge-arch: X86_64
-          - runner.arch: X64
-            os: macos-latest
-            conda-forge-arch: X86_64
-          - runner.arch: ARM
-            os: ubuntu-latest
-            # cspell: disable-next-line
-            conda-forge-arch: aarch64
-          - runner.arch: ARM
-            os: macos-latest
-            conda-forge-arch: arm64
-          - runner.arch: ARM64
-            os: ubuntu-latest
-            # cspell: disable-next-line
-            conda-forge-arch: aarch64
 
     runs-on: ${{ matrix.os }}
 
