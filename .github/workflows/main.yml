@@ -44,13 +44,13 @@ jobs:
           - tox-env: py310
             python-version: "3.10"
 
-          # # set vars for conda-forge (conda-forge-os)
-          # - os: ubuntu-latest
-          #   conda-forge-os: Linux
-          # - os: windows-latest
-          #   conda-forge-os: Windows
-          # - os: macos-latest
-          #   conda-forge-os: MacOSX
+          # set vars for conda-forge (conda-forge-os)
+          - os: ubuntu-latest
+            conda-forge-os: Linux
+          - os: windows-latest
+            conda-forge-os: Windows
+          - os: macos-latest
+            conda-forge-os: MacOSX
 
           # # set vars for conda-forge (conda-forge-arch)
           # - runner.arch: X86
@@ -69,13 +69,13 @@ jobs:
           #   # cspell: disable-next-line
           #   conda-forge-arch: aarch64
 
-          # # set vars for conda-forge (conda-forge-ext)
-          # - os: ubuntu-latest
-          #   conda-forge-ext: sh
-          # - os: window-latest
-          #   conda-forge-ext: exe
-          # - os: macos-latest
-          #   conda-forge-ext: sh
+          # set vars for conda-forge (conda-forge-ext)
+          - os: ubuntu-latest
+            conda-forge-ext: sh
+          - os: windows-latest
+            conda-forge-ext: exe
+          - os: macos-latest
+            conda-forge-ext: sh
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -84,7 +84,6 @@ jobs:
         uses: conda-incubator/setup-miniconda@v2.1.1
         with:
           # installer-url: https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-${{ matrix.conda-forge-os }}-${{ matrix.conda-forge-arch }}.${{ matrix.conda-forge-ext }}
-          # python-version: ${{ env.PYTHON_LATEST }}
           allow-softlinks: true
           show-channel-urls: true
           auto-activate-base: false
