@@ -80,6 +80,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+      - name: Runner Info
+        run: |
+          echo OS: ${{ runner.os }}
+          echo ARCH: ${{ runner.arch }}
       - name: Setup miniforge
         uses: conda-incubator/setup-miniconda@v2.1.1
         with:
