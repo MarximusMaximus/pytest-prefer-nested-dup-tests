@@ -1,6 +1,6 @@
 name: main
 
-on: [push]
+on: [push, workflow_dispatch]
 
 env:
   PYTHON_LATEST: 3.10
