@@ -55,7 +55,7 @@ build-backend = "poetry.core.masonry.api"
 #   via vscode, and during the 'coverage' env of tox
 [tool.pytest.ini_options]
 minversion = 7.1
-# make XPASS (“unexpectedly passing”) result to fail the test suite
+# make XPASS ("unexpectedly passing") result to fail the test suite
 xfail_strict = true
 addopts = [
   # report details (verbose)
