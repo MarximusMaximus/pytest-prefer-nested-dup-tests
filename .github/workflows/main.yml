@@ -17,7 +17,7 @@ jobs:
       fail-fast: false
       max-parallel: 4
       matrix:
-        friendly-os: [
+        os: [
           ubuntu-latest-x64,
           windows-latest-x64,
           macos-latest-x64,
@@ -30,10 +30,10 @@ jobs:
         include:
           # create additional matrix entries for ubuntu & tox_env
           - tox-env: lint
-            friendly-os: ubuntu-latest-x64
+            os: ubuntu-latest-x64
             python-version: "3.10"
           - tox-env: coverage
-            friendly-os: ubuntu-latest-x64
+            os: ubuntu-latest-x64
             python-version: "3.10"
 
           # set vars for tox-env
@@ -45,23 +45,23 @@ jobs:
             python-version: "3.10"
 
           # set vars for os & conda-forge
-          - friendly-os: ubuntu-latest-x64
-            os: ubuntu-latest
+          - os: ubuntu-latest-x64
+            os-image: ubuntu-latest
             conda-forge-os: Linux
             conda-forge-arch: X86_64
             conda-forge-ext: sh
-          - friendly-os: windows-latest-x64
-            os: windows-latest
+          - os: windows-latest-x64
+            os-image: windows-latest
             conda-forge-os: Windows
             conda-forge-arch: X86_64
             conda-forge-ext: exe
-          - friendly-os: macos-latest-x64
-            os: macos-latest
+          - os: macos-latest-x64
+            os-image: macos-latest
             conda-forge-os: MacOSX
             conda-forge-arch: X86_64
             conda-forge-ext: sh
 
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.os-image }}
 
     steps:
       - uses: actions/checkout@v1
