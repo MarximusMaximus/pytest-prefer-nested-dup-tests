@@ -1,6 +1,10 @@
 name: main
 
-on: [push, workflow_dispatch, pull_request]
+on: [
+  push,
+  pull_request,
+  workflow_dispatch,
+]
 
 defaults:
   run:
@@ -93,6 +97,7 @@ jobs:
 
       - name: Conda Env Setup
         run: |
+          sed -I.old 's/  - python=.*/  - python=${{ matrix.python-version }}/' ./conda-environment.yml
           conda env create --name work --file ./conda-environment.yml -v
 
       - name: Poetry Dependencies
