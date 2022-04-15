@@ -12,7 +12,7 @@ defaults:
 
 jobs:
   test:
-    name: Test - ${{ matrix.os }} - ${{ matrix.tox-env }}
+    name: Test - ${{ matrix.friendly-os }} - ${{ matrix.tox-env }}
     strategy:
       fail-fast: false
       max-parallel: 4
@@ -58,13 +58,13 @@ jobs:
           # set vars for os & conda-forge
           - friendly-os: ubuntu-latest-x64
             os: ubuntu-latest
-            conda-forge-arch: X86_64
+            # conda-forge-arch: X86_64
           - friendly-os: windows-latest-x64
             os: windows-latest
-            conda-forge-arch: X86_64
+            # conda-forge-arch: X86_64
           - friendly-os: macos-latest-x64
             os: macos-latest
-            conda-forge-arch: X86_64
+            # conda-forge-arch: X86_64
 
     runs-on: ${{ matrix.os }}
 
