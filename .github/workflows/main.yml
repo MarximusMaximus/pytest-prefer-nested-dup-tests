@@ -57,10 +57,22 @@ jobs:
 
           # set vars for conda-forge (conda-forge-arch)
           - runner.arch: X86
-            os: [ubuntu-latest, windows-latest, macos-latest]
+            os: ubuntu-latest
+            conda-forge-arch: X86_64
+          - runner.arch: X86
+            os: windows-latest
+            conda-forge-arch: X86_64
+          - runner.arch: X86
+            os: macos-latest
             conda-forge-arch: X86_64
           - runner.arch: X64
-            os: [ubuntu-latest, windows-latest, macos-latest]
+            os: ubuntu-latest
+            conda-forge-arch: X86_64
+          - runner.arch: X64
+            os: windows-latest
+            conda-forge-arch: X86_64
+          - runner.arch: X64
+            os: macos-latest
             conda-forge-arch: X86_64
           - runner.arch: ARM
             os: ubuntu-latest
