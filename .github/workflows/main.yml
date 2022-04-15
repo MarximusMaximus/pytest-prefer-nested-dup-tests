@@ -59,7 +59,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Setup miniforge
-        uses: goanpeca/setup-miniconda@v1
+        uses: conda-forge/setup-miniforge@v1.6.0
         with:
           # installer-url: https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-${{ matrix.conda-forge-os }}-${{ matrix.conda-forge-arch }}.${{ matrix.conda-forge-ext }}
           python-version: ${{ env.PYTHON_LATEST }}
