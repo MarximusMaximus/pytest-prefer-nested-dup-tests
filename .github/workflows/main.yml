@@ -16,11 +16,11 @@ jobs:
         os: [ubuntu-latest, window-latest, macos-latest]
         tox-env: [py38, py39, py310]
         include:
-          # create additional matrix entries for ubuntu & tox_env
-          - tox-env: lint
-            os: ubuntu-latest
-          - tox-env: coverage
-            os: ubuntu-latest
+          # # create additional matrix entries for ubuntu & tox_env
+          # - tox-env: lint
+          #   os: ubuntu-latest
+          # - tox-env: coverage
+          #   os: ubuntu-latest
 
           # set env vars for tox (python-version)
           - tox-env: py38
@@ -34,38 +34,38 @@ jobs:
           - tox-env: coverage
             python-version: "3.10"
 
-          # set vars for conda-forge (conda-forge-os)
-          - os: ubuntu-latest
-            conda-forge-os: Linux
-          - os: windows-latest
-            conda-forge-os: Windows
-          - os: macos-latest
-            conda-forge-os: MacOSX
+          # # set vars for conda-forge (conda-forge-os)
+          # - os: ubuntu-latest
+          #   conda-forge-os: Linux
+          # - os: windows-latest
+          #   conda-forge-os: Windows
+          # - os: macos-latest
+          #   conda-forge-os: MacOSX
 
-          # set vars for conda-forge (conda-forge-arch)
-          - runner.arch: X86
-            conda-forge-arch: X86_64
-          - runner.arch: X64
-            conda-forge-arch: X86_64
-          - runner.arch: ARM
-            os: ubuntu-latest
-            # cspell: disable-next-line
-            conda-forge-arch: aarch64
-          - runner.arch: ARM
-            os: macos-latest
-            conda-forge-arch: arm64
-          - runner.arch: ARM64
-            os: ubuntu-latest
-            # cspell: disable-next-line
-            conda-forge-arch: aarch64
+          # # set vars for conda-forge (conda-forge-arch)
+          # - runner.arch: X86
+          #   conda-forge-arch: X86_64
+          # - runner.arch: X64
+          #   conda-forge-arch: X86_64
+          # - runner.arch: ARM
+          #   os: ubuntu-latest
+          #   # cspell: disable-next-line
+          #   conda-forge-arch: aarch64
+          # - runner.arch: ARM
+          #   os: macos-latest
+          #   conda-forge-arch: arm64
+          # - runner.arch: ARM64
+          #   os: ubuntu-latest
+          #   # cspell: disable-next-line
+          #   conda-forge-arch: aarch64
 
-          # set vars for conda-forge (conda-forge-ext)
-          - os: ubuntu-latest
-            conda-forge-ext: sh
-          - os: window-latest
-            conda-forge-ext: exe
-          - os: macos-latest
-            conda-forge-ext: sh
+          # # set vars for conda-forge (conda-forge-ext)
+          # - os: ubuntu-latest
+          #   conda-forge-ext: sh
+          # - os: window-latest
+          #   conda-forge-ext: exe
+          # - os: macos-latest
+          #   conda-forge-ext: sh
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -73,7 +73,7 @@ jobs:
       - name: Setup miniforge
         uses: goanpeca/setup-miniconda@v1
         with:
-          installer-url: https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-${{ matrix.conda-forge-os }}-${{ matrix.conda-forge-arch }}.${{ matrix.conda-forge-ext }}
+          # installer-url: https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-${{ matrix.conda-forge-os }}-${{ matrix.conda-forge-arch }}.${{ matrix.conda-forge-ext }}
           python-version: ${{ env.PYTHON_LATEST }}
           allow-softlinks: true
           show-channel-urls: true
