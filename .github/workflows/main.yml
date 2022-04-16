@@ -163,8 +163,10 @@ jobs:
         id: check-version
         run: |
           conda activate work
-          git tag | grep -e "^$(poetry version --short)$" && exit 1
-          [[ "$(echo ${{ github.ref_name  }} | sed 's/release\///g;s/\//./g')" == "$(poetry version --short)" ]] || exit 1
+          git tag | grep -e "^$(poetry version --short)$" \
+            && echo "Tag already exists."; exit 2
+          [[ "$(echo ${{ github.ref_name  }} | sed 's/release\///g;s/\//./g')" == "$(poetry version --short)" ]] \
+            || echo "Release branch name and version number mismatch."; exit 3
           echo ::set-output name=version::$(poetry version --short)
           [[ "$(poetry version --short)" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] \
             || echo ::set-output name=prerelease::true
