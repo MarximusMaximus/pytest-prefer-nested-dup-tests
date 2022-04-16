@@ -171,6 +171,7 @@ jobs:
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
+          commit: ${{ github.sha }}
           artifacts: "dist/*"
           artifactErrorsFailBuild: true
           generateReleaseNotes: true
