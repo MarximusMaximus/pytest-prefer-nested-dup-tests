@@ -112,8 +112,8 @@ jobs:
           conda activate work
           tox -e ${{ matrix.tox-env }}
 
-  deploy:
-    if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
+  publish:
+    if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/heads/release')
 
     runs-on: ubuntu-latest
     needs: test
@@ -163,6 +163,8 @@ jobs:
         id: check-version
         run: |
           conda activate work
+          [[ "$(echo ${{ github.ref_name  }} | sed 's/release\///g;s/\//./g')" == "$(poetry version --short)" ]] || exit 1
+          echo ::set-output name=version::$(poetry version --short)
           [[ "$(poetry version --short)" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] \
             || echo ::set-output name=prerelease::true
 
@@ -172,7 +174,8 @@ jobs:
           artifacts: "dist/*"
           token: ${{ secrets.GITHUB_TOKEN }}
           draft: false
-          prerelease: steps.check-version.outputs.prerelease == 'true'
+          tag: ${{ steps.check-version.outputs.version }}
+          prerelease: ${{ steps.check-version.outputs.prerelease == 'true' }}
 
       - name: Publish to PyPI
         env:
