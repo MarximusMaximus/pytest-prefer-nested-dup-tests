@@ -172,6 +172,8 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "dist/*"
+          artifactErrorsFailBuild: true
+          generateReleaseNotes: true
           token: ${{ secrets.GITHUB_TOKEN }}
           draft: false
           tag: ${{ steps.check-version.outputs.version }}
