@@ -1,6 +1,7 @@
 pytest-prefer-nested-dup-tests
 ===================================
-by Marximus Maximus
+
+by Marximus Maximus (https://www.marximus.com)
 
 .. image:: http://img.shields.io/pypi/v/pytest-prefer-nested-dup-tests.svg
    :target: https://pypi.python.org/pypi/pytest-prefer-nested-dup-tests
@@ -49,7 +50,7 @@ If you encounter any problems, please `file an issue`_ along with a detailed des
 Like My Work & Want To Support It?
 ----------------------------------
 
-- Main Website: https://marximus.com
+- Main Website: https://www.marximus.com
 - Patreon (On Going Support): https://www.patreon.com/marximus
 - Ko-fi (One Time Tip): https://ko-fi.com/marximusmaximus
 
