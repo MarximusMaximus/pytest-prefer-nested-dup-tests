@@ -28,7 +28,6 @@ exclude_lines =
 
 [html]
 directory = htmlcov
-show_contexts = true
 
 [xml]
 output = coverage.xml
