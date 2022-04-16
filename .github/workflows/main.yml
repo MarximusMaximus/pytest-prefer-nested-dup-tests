@@ -107,33 +107,76 @@ jobs:
           conda activate work
           poetry install
 
-      - name: Test
+      - name: Test - ${{ matrix.tox-env }}
         run: |
           conda activate work
           tox -e ${{ matrix.tox-env }}
 
+  deploy:
+    if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
 
-  # deploy:
-  #   if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
+    runs-on: ubuntu-latest
+    needs: test
 
-  #   runs-on: ubuntu-latest
-  #   needs: poetry
+    steps:
+      - uses: actions/checkout@v1
+      - name: Runner Info
+        run: |
+          echo OS: ${{ runner.os }}
+          echo ARCH: ${{ runner.arch }}
+          echo matrix:
+          echo os: ${{ matrix.os }}
+          echo conda-forge-os: ${{ matrix.conda-forge-os }}
+          echo conda-forge-ext: ${{ matrix.conda-forge-ext }}
+          echo conda-forge-arch: ${{ matrix.conda-forge-arch }}
+          echo tox-env: ${{ matrix.tox-env }}
+      - name: Setup miniforge
+        uses: conda-incubator/setup-miniconda@v2.1.1
+        with:
+          installer-url: https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-X86_64.sh
+          allow-softlinks: true
+          show-channel-urls: true
+          auto-activate-base: false
+      - name: Conda Base Info
+        run: |
+          conda info
+          conda list
+          conda config --show-sources
+          conda config --show
 
-  #   steps:
-  #   - uses: actions/checkout@v1
-  #   - name: Set up Python
-  #     uses: actions/setup-python@v1
-  #     with:
-  #       python-version: "3.10"
-  #   - name: Install wheel
-  #     run: |
-  #       python -m pip install --upgrade pip
-  #       pip install wheel setuptools
-  #   - name: Build package
-  #     run: |
-  #       python setup.py sdist bdist_wheel
-  #   - name: Publish package to PyPI
-  #     uses: pypa/gh-action-pypi-publish@master
-  #     with:
-  #       user: __token__
-  #       password: ${{ secrets.pypi_token }}
+      - name: Conda Env Setup
+        run: |
+          sed -i.old 's/  - python=.*/  - python=${{ matrix.python-version }}/' ./conda-environment.yml
+          conda env create --name work --file ./conda-environment.yml -v
+
+      - name: Poetry Dependencies
+        run: |
+          conda activate work
+          poetry install
+
+      - name: Build package
+        run: |
+          conda activate work
+          poetry build
+
+      - name: Check Version
+        id: check-version
+        run: |
+          conda activate work
+          [[ "$(poetry version --short)" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] \
+            || echo ::set-output name=prerelease::true
+
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "dist/*"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          draft: false
+          prerelease: steps.check-version.outputs.prerelease == 'true'
+
+      - name: Publish to PyPI
+        env:
+          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
+        run: |
+          conda activate work
+          poetry publish
