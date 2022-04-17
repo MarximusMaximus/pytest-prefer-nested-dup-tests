@@ -183,22 +183,25 @@ jobs:
           echo ""
           git tag
           echo ""
-          git tag | grep -e "^${{ steps.process-version.outputs.version  }}$"
+          echo "$(git tag | grep -e "^${{ steps.process-version.outputs.version }}$")"
           echo ""
-          git tag | grep -e "^${{ steps.process-version.outputs.version }}$" \
+          [[ $(git tag | grep -e "^${{ steps.process-version.outputs.version }}$") ]] \
             && (
               echo "Tag already exists."
               exit 2
-            )
+            ); exit $?
 
       - name: Check Branch Name
         run: |
           conda activate work
-          [[ "$(echo ${{ github.ref_name  }} | sed 's/release\///g;s/\//./g')" == "${{ steps.process-version.outputs.version }}" ]] \
+          [[
+            "$(echo ${{ github.ref_name  }} | sed 's/release\///g;s/\//./g')" ==
+            "${{ steps.process-version.outputs.version }}"
+          ]] \
             || (
               echo "Release branch name and version number mismatch."
               exit 3
-            )
+            ); exit $?
 
       - name: Create Release
         uses: ncipollo/release-action@v1
