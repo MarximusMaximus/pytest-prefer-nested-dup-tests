@@ -159,14 +159,22 @@ jobs:
           conda activate work
           poetry build
 
-      - name: Check Version
-        id: check-version
+      - name: Check Tag Exists
         run: |
           conda activate work
           git tag | grep -e "^$(poetry version --short)$" \
             && echo "Tag already exists."; exit 2
+
+      - name: Check Branch Name
+        run: |
+          conda activate work
           [[ "$(echo ${{ github.ref_name  }} | sed 's/release\///g;s/\//./g')" == "$(poetry version --short)" ]] \
             || echo "Release branch name and version number mismatch."; exit 3
+
+      - name: Process Version Number
+        id: process-version
+        run: |
+          conda activate work
           echo ::set-output name=version::$(poetry version --short)
           [[ "$(poetry version --short)" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] \
             || echo ::set-output name=prerelease::true
@@ -180,8 +188,8 @@ jobs:
           generateReleaseNotes: true
           token: ${{ secrets.GITHUB_TOKEN }}
           draft: false
-          tag: ${{ steps.check-version.outputs.version }}
-          prerelease: ${{ steps.check-version.outputs.prerelease == 'true' }}
+          tag: ${{ steps.process-version.outputs.version }}
+          prerelease: ${{ steps.process-version.outputs.prerelease == 'true' }}
 
       - name: Publish to PyPI
         env:
