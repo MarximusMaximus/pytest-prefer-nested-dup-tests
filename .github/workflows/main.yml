@@ -276,6 +276,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: build-products
+          path: dist
 
       - name: Create Release
         uses: ncipollo/release-action@v1
@@ -341,6 +342,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: build-products
+          path: dist
 
       - name: Publish to PyPI
         env:
