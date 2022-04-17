@@ -2,4 +2,4 @@
 =====
 
 - First release.
-- Forked from https://github.com/nicoddemus/pytest-drop-dup-tests (~=v0.3.0+, 8d1be7cddb85173cad384372d5229b231c5eb5f6)
+- Forked from https://github.com/nicoddemus/pytest-drop-dup-tests (v0.3.0, 94c82108677a12b19c9f7bc0076fb0301147be6a)
