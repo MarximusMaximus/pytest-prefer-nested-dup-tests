@@ -105,6 +105,14 @@ jobs:
           sed -i.old 's/  - python=.*/  - python=${{ matrix.python-version }}/' ./conda-environment.yml
           conda env create --name work --file ./conda-environment.yml -v
 
+      - name: Conda Work Env Info
+        run: |
+          conda activate work
+          conda info
+          conda list
+          conda config --show-sources
+          conda config --show
+
       - name: Poetry Dependencies
         run: |
           conda activate work
@@ -159,6 +167,14 @@ jobs:
           sed -i.old 's/  - python=.*/  - python=${{ matrix.python-version }}/' ./conda-environment.yml
           conda env create --name work --file ./conda-environment.yml -v
 
+      - name: Conda Work Env Info
+        run: |
+          conda activate work
+          conda info
+          conda list
+          conda config --show-sources
+          conda config --show
+
       - name: Poetry Dependencies
         run: |
           conda activate work
@@ -209,6 +225,14 @@ jobs:
         run: |
           sed -i.old 's/  - python=.*/  - python=${{ matrix.python-version }}/' ./conda-environment.yml
           conda env create --name work --file ./conda-environment.yml -v
+
+      - name: Conda Work Env Info
+        run: |
+          conda activate work
+          conda info
+          conda list
+          conda config --show-sources
+          conda config --show
 
       - name: Poetry Dependencies
         run: |
@@ -300,6 +324,14 @@ jobs:
         run: |
           sed -i.old 's/  - python=.*/  - python=${{ matrix.python-version }}/' ./conda-environment.yml
           conda env create --name work --file ./conda-environment.yml -v
+
+      - name: Conda Work Env Info
+        run: |
+          conda activate work
+          conda info
+          conda list
+          conda config --show-sources
+          conda config --show
 
       - name: Poetry Dependencies
         run: |
