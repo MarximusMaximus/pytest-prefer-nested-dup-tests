@@ -112,6 +112,15 @@ jobs:
           conda activate work
           tox -e ${{ matrix.tox-env }} -- -p no:sugar
 
+      - name: Archive code coverage results
+        if: ${{ matrix.tox-env == "coverage" }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: code-coverage-report
+          path: |
+            coverage.xml
+            htmlcov/**
+
   publish:
     if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/heads/release')
 
