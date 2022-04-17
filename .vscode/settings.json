@@ -15,6 +15,7 @@
         "numcollected",
         "pygments",
         "pypa",
+        "pyparsing",
         "pypi",
         "pytest",
         "pytester",
