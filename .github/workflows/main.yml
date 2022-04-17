@@ -162,6 +162,12 @@ jobs:
       - name: Check Tag Exists
         run: |
           conda activate work
+          poetry version --short
+          echo ""
+          git tag
+          echo ""
+          git tag | grep -e "^$(poetry version --short)$"
+          echo ""
           git tag | grep -e "^$(poetry version --short)$" \
             && (
               echo "Tag already exists."
