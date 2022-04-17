@@ -163,13 +163,19 @@ jobs:
         run: |
           conda activate work
           git tag | grep -e "^$(poetry version --short)$" \
-            && echo "Tag already exists."; exit 2
+            && (
+              echo "Tag already exists."
+              exit 2
+            )
 
       - name: Check Branch Name
         run: |
           conda activate work
           [[ "$(echo ${{ github.ref_name  }} | sed 's/release\///g;s/\//./g')" == "$(poetry version --short)" ]] \
-            || echo "Release branch name and version number mismatch."; exit 3
+            || (
+              echo "Release branch name and version number mismatch."
+              exit 3
+            )
 
       - name: Process Version Number
         id: process-version
