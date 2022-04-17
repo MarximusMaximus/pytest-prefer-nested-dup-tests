@@ -115,7 +115,7 @@ jobs:
           conda activate work
           tox -e ${{ matrix.tox-env }} -- -p no:sugar
 
-      - name: Archive code coverage results
+      - name: Upload Coverage Artifacts
         if: matrix.tox-env == 'coverage'
         uses: actions/upload-artifact@v3
         with:
@@ -124,9 +124,9 @@ jobs:
             coverage.xml
             htmlcov/**
 
-  publish:
+  build:
     if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/heads/release')
-    name: Create Release & Publish to PyPI
+    name: Build Products
 
     runs-on: ubuntu-latest
     needs: test
@@ -169,6 +169,52 @@ jobs:
           conda activate work
           poetry build
 
+      - name: Upload Build Products
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-products
+          path: dist/*
+
+  github-release:
+    if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/heads/release')
+    name: Create Github Release
+
+    runs-on: ubuntu-latest
+    needs: [test, build]
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Runner Info
+        run: |
+          echo OS: ${{ runner.os }}
+          echo ARCH: ${{ runner.arch }}
+
+      - name: Setup miniforge
+        uses: conda-incubator/setup-miniconda@v2.1.1
+        with:
+          installer-url: https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-X86_64.sh
+          allow-softlinks: true
+          show-channel-urls: true
+          auto-activate-base: false
+
+      - name: Conda Base Info
+        run: |
+          conda info
+          conda list
+          conda config --show-sources
+          conda config --show
+
+      - name: Conda Env Setup
+        run: |
+          sed -i.old 's/  - python=.*/  - python=${{ matrix.python-version }}/' ./conda-environment.yml
+          conda env create --name work --file ./conda-environment.yml -v
+
+      - name: Poetry Dependencies
+        run: |
+          conda activate work
+          poetry install
+
       - name: Process Version Number
         id: process-version
         run: |
@@ -203,6 +249,10 @@ jobs:
             exit 2
           fi
 
+      - uses: actions/download-artifact@v3
+        with:
+          name: build-products
+
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
@@ -214,6 +264,51 @@ jobs:
           draft: false
           tag: ${{ steps.process-version.outputs.version }}
           prerelease: ${{ steps.process-version.outputs.prerelease == 'true' }}
+
+
+  publish:
+    if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/heads/release')
+    name: Publish to PyPI
+
+    runs-on: ubuntu-latest
+    needs: [test, build, github-release]
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Runner Info
+        run: |
+          echo OS: ${{ runner.os }}
+          echo ARCH: ${{ runner.arch }}
+
+      - name: Setup miniforge
+        uses: conda-incubator/setup-miniconda@v2.1.1
+        with:
+          installer-url: https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-X86_64.sh
+          allow-softlinks: true
+          show-channel-urls: true
+          auto-activate-base: false
+
+      - name: Conda Base Info
+        run: |
+          conda info
+          conda list
+          conda config --show-sources
+          conda config --show
+
+      - name: Conda Env Setup
+        run: |
+          sed -i.old 's/  - python=.*/  - python=${{ matrix.python-version }}/' ./conda-environment.yml
+          conda env create --name work --file ./conda-environment.yml -v
+
+      - name: Poetry Dependencies
+        run: |
+          conda activate work
+          poetry install
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: build-products
 
       - name: Publish to PyPI
         env:
