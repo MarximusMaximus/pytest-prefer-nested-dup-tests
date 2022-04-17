@@ -82,7 +82,16 @@ Moving Forward Dependencies' Versions
   - Option 1: Manually update dependencies in pyproject.toml
   - Option 2: Use ``poetry update`` command.
 
-Tests can be run locally with `tox`_.
+Testing
+^^^^^^^
+
+A cross-python version test matrix can be run locally with `tox`_:
+
+    $ tox
+
+Current python version only tests can be run locally with `pytest`_:
+
+    $ pytest
 
 
 License
