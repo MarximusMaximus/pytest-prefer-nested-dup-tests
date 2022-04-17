@@ -73,6 +73,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+
       - name: Runner Info
         run: |
           echo OS: ${{ runner.os }}
@@ -83,6 +84,7 @@ jobs:
           echo conda-forge-ext: ${{ matrix.conda-forge-ext }}
           echo conda-forge-arch: ${{ matrix.conda-forge-arch }}
           echo tox-env: ${{ matrix.tox-env }}
+
       - name: Setup miniforge
         uses: conda-incubator/setup-miniconda@v2.1.1
         with:
@@ -90,6 +92,7 @@ jobs:
           allow-softlinks: true
           show-channel-urls: true
           auto-activate-base: false
+
       - name: Conda Base Info
         run: |
           conda info
@@ -130,16 +133,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+
       - name: Runner Info
         run: |
           echo OS: ${{ runner.os }}
           echo ARCH: ${{ runner.arch }}
-          echo matrix:
-          echo os: ${{ matrix.os }}
-          echo conda-forge-os: ${{ matrix.conda-forge-os }}
-          echo conda-forge-ext: ${{ matrix.conda-forge-ext }}
-          echo conda-forge-arch: ${{ matrix.conda-forge-arch }}
-          echo tox-env: ${{ matrix.tox-env }}
+
       - name: Setup miniforge
         uses: conda-incubator/setup-miniconda@v2.1.1
         with:
@@ -147,6 +146,7 @@ jobs:
           allow-softlinks: true
           show-channel-urls: true
           auto-activate-base: false
+
       - name: Conda Base Info
         run: |
           conda info
@@ -177,7 +177,7 @@ jobs:
           [[ "$(poetry version --short)" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] \
             || echo ::set-output name=prerelease::true
 
-      - name: Check Tag Exists
+      - name: Check Tag Doesn't Exist
         run: |
           conda activate work
           echo "${{ steps.process-version.outputs.version }}"
