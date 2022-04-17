@@ -110,7 +110,7 @@ jobs:
       - name: Test - ${{ matrix.tox-env }}
         run: |
           conda activate work
-          tox -e ${{ matrix.tox-env }}
+          tox -e ${{ matrix.tox-env }} -- -p no:sugar
 
   publish:
     if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/heads/release')

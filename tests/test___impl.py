@@ -14,7 +14,7 @@ def test_drop_duplicated_dir(testdir):
             pass
         """
     )
-    result = testdir.runpytest(".", ".")
+    result = testdir.runpytest(".", ".", "-p", "no:sugar")
     result.stdout.fnmatch_lines(
         [
             "* 1 passed in *",
@@ -33,7 +33,7 @@ def test_drop_duplicated_pkg(testdir):
             """,
         }
     )
-    result = testdir.runpytest("pkg", "pkg")
+    result = testdir.runpytest("pkg", "pkg", "-p", "no:sugar")
     result.stdout.fnmatch_lines(
         [
             "* 1 passed in *",
@@ -55,7 +55,7 @@ def test_drop_duplicated_files(testdir):
             """,
         }
     )
-    result = testdir.runpytest("tests/test_foo.py", "tests", "-v")
+    result = testdir.runpytest("tests/test_foo.py", "tests", "-v", "-p", "no:sugar")
     result.stdout.fnmatch_lines(
         [
             "tests/test_foo.py::test_foo *",
@@ -89,7 +89,7 @@ def test_nested_package(testdir):
             }
         )
 
-        result = testdir.runpytest(".", "-v", "--collect-only")
+        result = testdir.runpytest(".", "-v", "--collect-only", "-p", "no:sugar")
         result.stdout.fnmatch_lines(
             [
                 "collected 2 items",
@@ -104,7 +104,7 @@ def test_nested_package(testdir):
         )
         assert result.ret == 0
 
-        result = testdir.runpytest(".", "-v")
+        result = testdir.runpytest(".", "-v", "-p", "no:sugar")
         result.stdout.fnmatch_lines(
             [
                 "collected 2 items",
@@ -115,7 +115,7 @@ def test_nested_package(testdir):
         )
         assert result.ret == 0
 
-        result = testdir.runpytest("tests/foo", ".", "--collect-only")
+        result = testdir.runpytest("tests/foo", ".", "--collect-only", "-p", "no:sugar")
         result.stdout.fnmatch_lines(
             [
                 "collected 2 items",
