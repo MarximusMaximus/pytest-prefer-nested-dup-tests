@@ -183,13 +183,14 @@ jobs:
           echo ""
           git tag
           echo ""
+          echo "Match:"
           echo "$(git tag | grep -e "^${{ steps.process-version.outputs.version }}$")"
           echo ""
           [[ $(git tag | grep -e "^${{ steps.process-version.outputs.version }}$") ]] \
             && (
               echo "Tag already exists."
-              exit 2
-            ); exit $?
+            )
+          $(git tag | grep -e "^${{ steps.process-version.outputs.version }}$")
 
       - name: Check Branch Name
         run: |
