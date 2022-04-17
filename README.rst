@@ -77,9 +77,13 @@ Moving Forward Dependencies' Versions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - Conda:
-  - Manually update version pins in conda-environment.yml
+
+  - Manually update version pins in ``conda-environment.yml``
+
 - Poetry:
-  - Option 1: Manually update dependencies in pyproject.toml
+
+  - Option 1: Manually update dependencies in ``pyproject.toml``
+
   - Option 2: Use ``poetry update`` command.
 
 Testing

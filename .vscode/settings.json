@@ -18,6 +18,7 @@
         "pypa",
         "pyparsing",
         "pypi",
+        "pyproject",
         "pytest",
         "pytester",
         "sdist",
