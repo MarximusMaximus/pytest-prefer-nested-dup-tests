@@ -73,6 +73,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+        name: Checkout Repo
 
       - name: Runner Info
         run: |
@@ -141,6 +142,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+        name: Checkout Repo
 
       - name: Runner Info
         run: |
@@ -200,6 +202,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+        name: Checkout Repo
 
       - name: Runner Info
         run: |
@@ -274,6 +277,7 @@ jobs:
           fi
 
       - uses: actions/download-artifact@v3
+        name: Download Build Products
         with:
           name: build-products
           path: dist
@@ -300,6 +304,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+        name: Checkout Repo
 
       - name: Runner Info
         run: |
@@ -340,6 +345,7 @@ jobs:
           poetry install
 
       - uses: actions/download-artifact@v3
+        name: Download Build Products
         with:
           name: build-products
           path: dist
