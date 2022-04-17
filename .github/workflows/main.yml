@@ -113,7 +113,7 @@ jobs:
           tox -e ${{ matrix.tox-env }} -- -p no:sugar
 
       - name: Archive code coverage results
-        if: ${{ matrix.tox-env == "coverage" }}
+        if: matrix.tox-env == "coverage"
         uses: actions/upload-artifact@v3
         with:
           name: code-coverage-report
