@@ -168,16 +168,24 @@ jobs:
           conda activate work
           poetry build
 
+      - name: Process Version Number
+        id: process-version
+        run: |
+          conda activate work
+          echo ::set-output name=version::$(poetry version --short)
+          [[ "$(poetry version --short)" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] \
+            || echo ::set-output name=prerelease::true
+
       - name: Check Tag Exists
         run: |
           conda activate work
-          poetry version --short
+          echo "${{ steps.process-version.outputs.version }}"
           echo ""
           git tag
           echo ""
-          git tag | grep -e "^$(poetry version --short)$"
+          git tag | grep -e "^${{ steps.process-version.outputs.version  }}$"
           echo ""
-          git tag | grep -e "^$(poetry version --short)$" \
+          git tag | grep -e "^${{ steps.process-version.outputs.version }}$" \
             && (
               echo "Tag already exists."
               exit 2
@@ -186,19 +194,11 @@ jobs:
       - name: Check Branch Name
         run: |
           conda activate work
-          [[ "$(echo ${{ github.ref_name  }} | sed 's/release\///g;s/\//./g')" == "$(poetry version --short)" ]] \
+          [[ "$(echo ${{ github.ref_name  }} | sed 's/release\///g;s/\//./g')" == "${{ steps.process-version.outputs.version }}" ]] \
             || (
               echo "Release branch name and version number mismatch."
               exit 3
             )
-
-      - name: Process Version Number
-        id: process-version
-        run: |
-          conda activate work
-          echo ::set-output name=version::$(poetry version --short)
-          [[ "$(poetry version --short)" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] \
-            || echo ::set-output name=prerelease::true
 
       - name: Create Release
         uses: ncipollo/release-action@v1
