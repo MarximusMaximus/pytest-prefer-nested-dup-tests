@@ -73,9 +73,10 @@ jobs:
 
       - name: Set Conda Work Env As Default
         run: |
-          echo "conda activate work" >>$HOME/.bash_profile
-          echo "conda info" >>$HOME/.bash_profile
-          cat $HOME/.bash_profile
+          cat $HOME/.profile
+          echo "conda activate work" >>$HOME/.profile
+          echo "conda info" >>$HOME/.profile
+          cat $HOME/.profile
 
       - name: Poetry Dependencies
         run: |
