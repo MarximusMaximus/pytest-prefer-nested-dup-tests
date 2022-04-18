@@ -76,6 +76,10 @@ jobs:
           conda activate work
           poetry install
 
+      - name: Set Conda Work Env As Default
+        run: |
+          echo "conda activate work" >>.bash_profile
+
       # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
