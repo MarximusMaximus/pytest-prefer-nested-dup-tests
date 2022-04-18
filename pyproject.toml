@@ -30,8 +30,8 @@ include = [
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/MarximusMaximus/pytest-prefer-nested-dup-tests/issues"
-"Source" = "https://github.com/MarximusMaximus/pytest-prefer-nested-dup-test"
-"Documentation" = "https://github.com/MarximusMaximus/pytest-prefer-nested-dup-test"
+"Source" = "https://github.com/MarximusMaximus/pytest-prefer-nested-dup-tests"
+"Documentation" = "https://github.com/MarximusMaximus/pytest-prefer-nested-dup-tests"
 
 [tool.poetry.plugins]
 [tool.poetry.plugins."pytest11"]
