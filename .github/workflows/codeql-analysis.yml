@@ -71,14 +71,14 @@ jobs:
           conda config --show-sources
           conda config --show
 
-      - name: Poetry Dependencies
-        run: |
-          conda activate work
-          poetry install
-
       - name: Set Conda Work Env As Default
         run: |
           echo "conda activate work" >>.bash_profile
+          echo "conda info" >>.bash_profile
+
+      - name: Poetry Dependencies
+        run: |
+          poetry install
 
       # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
