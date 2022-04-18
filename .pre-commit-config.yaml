@@ -14,6 +14,6 @@ repos:
       - id: rst
         name: rst
         entry: rst-lint --encoding utf-8
-        files: ^(CHANGELOG.rst|README.rst)$
+        files: ^.*\.rst$
         language: python
         additional_dependencies: [pygments, restructuredtext_lint]
