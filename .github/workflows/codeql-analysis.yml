@@ -74,6 +74,8 @@ jobs:
       - name: Set Conda Work Env As Default
         run: |
           cat $HOME/.profile
+          echo "" >>$HOME/.profile
+          echo "" >>$HOME/.profile
           echo "conda activate work" >>$HOME/.profile
           echo "conda info" >>$HOME/.profile
           cat $HOME/.profile
