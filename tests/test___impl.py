@@ -1,13 +1,18 @@
 # -*- coding: utf-8 -*-
 
 import sys
+from typing import (
+    Any,
+)
+
+PytestFixture = Any
+
+def test___main(testdir: PytestFixture) -> None:
+    testdir = testdir  # ignore unused arg in sig
+    assert True
 
 
-def test___main():
-    pass
-
-
-def test_drop_duplicated_dir(testdir):
+def test_drop_duplicated_dir(testdir: PytestFixture) -> None:
     testdir.makepyfile(
         """
         def test_foo():
@@ -23,7 +28,7 @@ def test_drop_duplicated_dir(testdir):
     assert result.ret == 0
 
 
-def test_drop_duplicated_pkg(testdir):
+def test_drop_duplicated_pkg(testdir: PytestFixture) -> None:
     testdir.makepyfile(
         **{
             "pkg/__init__.py": "",
@@ -42,7 +47,7 @@ def test_drop_duplicated_pkg(testdir):
     assert result.ret == 0
 
 
-def test_drop_duplicated_files(testdir):
+def test_drop_duplicated_files(testdir: PytestFixture) -> None:
     testdir.makepyfile(
         **{
             "tests/test_bar.py": """
@@ -66,7 +71,7 @@ def test_drop_duplicated_files(testdir):
     assert result.ret == 0
 
 
-def test_nested_package(testdir):
+def test_nested_package(testdir: PytestFixture) -> None:
     # we need to hide our own "tests" module in order for this to work when testing ourself.
     sys_modules_tests_old = sys.modules.get("tests")
     del sys.modules["tests"]
@@ -131,14 +136,18 @@ def test_nested_package(testdir):
         assert result.ret == 0
     finally:
         # fix up sys.modules to include our "tests" module again (not the one from the temp dir)
-        sys.modules["tests"] = sys_modules_tests_old
+        if sys_modules_tests_old:
+            sys.modules["tests"] = sys_modules_tests_old
 
 
-def test___toplevel_coverage():
+def test___toplevel_coverage(testdir: PytestFixture) -> None:
     # this test solely exists to allow coverage.py to see the top level / outermost scope of our code
     # this is necessary b/c our code gets imported before coverage.py hooks in
     # we simply "hide" our module from python, import it, and then put it back
     # we put it back, just in case something had modified it in memory before this test runs
+
+    testdir = testdir  # ignore unused arg in sig
+
     old_module = sys.modules["pytest_prefer_nested_dup_tests"]  # keep a reference to it
     del sys.modules["pytest_prefer_nested_dup_tests"]  # hide it from python
     import pytest_prefer_nested_dup_tests  # import it as if new
