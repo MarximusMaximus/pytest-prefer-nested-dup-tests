@@ -210,10 +210,14 @@ cache/
 
 # coverage data
 .coverage
+.coverage*
 htmlcov/
 coverage.json
 coverage.xml
 coverage.html
+
+# codeql
+.codeql/
 
 # runtime files
 *.pid
