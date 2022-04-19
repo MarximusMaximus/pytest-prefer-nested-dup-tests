@@ -7,6 +7,8 @@ from typing import (
     List,
     Optional,
 )
+
+
 class ExtendedItem(pytest.Item):
     prefer_nested_dup_tests__parent_depth: int
 
