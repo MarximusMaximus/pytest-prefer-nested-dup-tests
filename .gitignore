@@ -216,6 +216,9 @@ coverage.json
 coverage.xml
 coverage.html
 
+# test & other report data
+.reports/
+
 # codeql
 .codeql/
 
