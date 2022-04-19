@@ -1,20 +1,40 @@
-def pytest_configure(config):
+import pytest
+import _pytest.config
+import _pytest.fixtures
+from typing import (
+    cast,
+    Dict,
+    List,
+    Optional,
+)
+
+
+class ExtendedItem(pytest.Item):
+    prefer_nested_dup_tests__parent_depth: int
+
+
+def pytest_configure(config: _pytest.config.Config) -> None:
     config.option.keepduplicates = True
 
 
-def pytest_collection_modifyitems(session, config, items):
+def pytest_collection_modifyitems(
+    session: pytest.Session,
+    config: _pytest.config.Config,
+    items: List[ExtendedItem],
+) -> None:
     session = session  # ignore unused var warning
 
-    seen_best_nodes = {}
+    seen_best_nodes: Dict[str, ExtendedItem] = {}
 
     for item in items:
         item.prefer_nested_dup_tests__parent_depth = 0
-        parent = item.parent
+        parent: Optional[ExtendedItem] = cast(Optional[ExtendedItem], item.parent)
         while parent != None:
+            parent = cast(ExtendedItem, parent)
             item.prefer_nested_dup_tests__parent_depth = (
                 item.prefer_nested_dup_tests__parent_depth + 1
             )
-            parent = parent.parent
+            parent = cast(Optional[ExtendedItem], parent.parent)
         if item.nodeid not in seen_best_nodes.keys():
             seen_best_nodes[item.nodeid] = item
         else:
