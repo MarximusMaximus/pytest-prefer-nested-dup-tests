@@ -51,6 +51,7 @@ black = "^22.3.0"
 Pygments = "^2.11.2"
 restructuredtext-lint = "^1.4.0"
 pytest-html = "^3.1.1"
+pre-commit = "^2.18.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
