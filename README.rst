@@ -9,6 +9,10 @@ by Marximus Maximus (https://www.marximus.com)
 .. image:: https://github.com/MarximusMaximus/pytest-prefer-nested-dup-tests/workflows/main/badge.svg
   :target: https://github.com/MarximusMaximus/pytest-prefer-nested-dup-tests/actions
 
+.. image:: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
+   :target: https://github.com/pre-commit/pre-commit
+   :alt: pre-commit
+
 A Pytest plugin to drop duplicated tests during collection, but will prefer keeping nested packages.
 
 By default, when de-duplicating tests, all sub-packages become top level packages. This plugin keeps
