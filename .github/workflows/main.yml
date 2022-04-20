@@ -127,6 +127,14 @@ jobs:
           conda activate work
           tox -e ${{ matrix.tox-env }} -- -p no:sugar
 
+      - name: Upload Test Report Artifacts
+        if: matrix.tox-env != 'lint'
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-report-${{ matrix.os }}-${{ matrix.tox-env }}
+          path: |
+            .reports/**
+
       - name: Upload Coverage Artifacts
         if: matrix.tox-env == 'coverage'
         uses: actions/upload-artifact@v3

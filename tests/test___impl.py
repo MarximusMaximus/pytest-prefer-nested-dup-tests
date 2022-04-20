@@ -137,7 +137,7 @@ def test_nested_package(testdir: PytestFixture) -> None:
         assert result.ret == 0
     finally:
         # fix up sys.modules to include our "tests" module again (not the one from the temp dir)
-        if sys_modules_tests_old:
+        if sys_modules_tests_old:  # pragma: no branch
             sys.modules["tests"] = sys_modules_tests_old
 
 
