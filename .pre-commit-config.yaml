@@ -1,9 +1,22 @@
 repos:
+
+  # - repo: https://github.com/asottile/add-trailing-comma
+  #   rev: v2.2.3
+  #   hooks:
+  #   - id: add-trailing-comma
+
   - repo: https://github.com/ambv/black
     rev: 22.3.0
     hooks:
       - id: black
         args: [--safe, --quiet]
+
+  # - repo: https://github.com/asottile/blacken-docs
+  #   rev: v1.12.1
+  #   hooks:
+  #   -   id: blacken-docs
+  #       additional_dependencies: [black==22.3.0]
+
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.2.0
     hooks:
@@ -26,6 +39,7 @@ repos:
       - id: check-case-conflict
       - id: check-ast
       - id: check-added-large-files
+
   - repo: local
     hooks:
       - id: rst
@@ -34,15 +48,101 @@ repos:
         files: ^.*\.rst$
         language: python
         additional_dependencies: [pygments, restructuredtext_lint]
+  ## alternative? additional? https://github.com/Lucas-C/pre-commit-hooks-markup
+
+
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v0.902
     hooks:
       - id: mypy
         args: [--strict]
         additional_dependencies: [pytest]
+
   - repo: https://gitlab.com/bmares/check-json5
     rev: v1.0.0
     hooks:
     - id: check-json5
       types: [file]
       files: ^.*\.json[c5]?$
+
+  # - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
+  #   rev: v1.2.4
+  #   hooks:
+  #   - id: python-safety-dependencies-check
+  #     files: pyproject.toml
+
+  # - repo: https://github.com/pre-commit/pygrep-hooks
+  #   rev: v1.9.0  # Use the ref you want to point at
+  #   hooks:
+  #   - id: python-use-type-annotations
+  #   - id: python-check-blanket-noqa
+  #   - id: python-check-blanket-type-ignore
+  #   - id: python-check-mock-methods
+  #   - id: python-no-eval
+  #   - id: python-no-log-warn
+  #   - id: rst-backticks
+  #   - id: rst-directive-colons
+  #   - id: rst-inline-touching-normal
+  #   - id: text-unicode-replacement-char
+
+  # - repo: https://github.com/JohnnyMorganz/StyLua
+  #   rev: v0.13.1
+  #   hooks:
+  #     - id: stylua # or stylua-system / stylua-github
+  ## alternative? https://github.com/Koihik/LuaFormatter
+
+  # - repo: https://github.com/Calinou/pre-commit-luacheck
+  #   rev: v1.0.0
+  #   hooks:
+  #     - id: luacheck
+
+  # - repo: https://github.com/shellcheck-py/shellcheck-py
+  #   rev: v0.8.0.4
+  #   hooks:
+  #   -   id: shellcheck
+  ## alternative? additional? https://github.com/jumanjihouse/pre-commit-hooks
+  ## alternative? additional?
+  # - repo: git://github.com/detailyang/pre-commit-shell
+  #   rev: v1.0.6
+  #   hooks:
+  #   - id: shell-lint
+
+  # - repo: https://github.com/igorshubovych/markdownlint-cli
+  #   rev: v0.31.1
+  #   hooks:
+  #   - id: markdownlint
+  ## alternative? https://github.com/markdownlint/markdownlint
+
+  ## https://github.com/thibaudcolas/curlylint
+
+  # - repo: https://github.com/cheshirekow/cmake-format-precommit
+  #   rev: v0.6.10
+  #   hooks:
+  #   - id: cmake-format
+  #   - id: cmake-lint
+  # - repo: https://github.com/cmake-lint/cmake-lint
+  #   hooks:
+  #     - id: cmakelint
+
+  # - repo: https://github.com/python-jsonschema/check-jsonschema
+  #   rev: 0.14.3
+  #   hooks:
+  #     - id: check-renovate
+  #       additional_dependencies: ['pyjson5']
+
+  ## https://github.com/zricethezav/gitleaks
+
+  ## https://github.com/Lucas-C/pre-commit-hooks
+
+  ## https://github.com/Lucas-C/pre-commit-hooks-go
+
+  ## very old?
+  ## https://github.com/awebdeveloper/pre-commit-tslint
+
+  # - repo: git://github.com/noahsark769/xcodeproj-sort-pre-commit-hook
+  #   sha: v1.1.1
+  #   hooks:
+  #   - id: xcodeproj-sort
+  #     args: [--groups-position=above]
+
+  ## https://github.com/jorisroovers/gitlint
