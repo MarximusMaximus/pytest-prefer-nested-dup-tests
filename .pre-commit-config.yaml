@@ -9,6 +9,23 @@ repos:
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
+      - id: check-toml
+      - id: check-yaml
+        types: [file]
+        files: ^.*\.ya?ml$
+      - id: check-xml
+      - id: destroyed-symlinks
+      - id: detect-private-key
+      - id: forbid-new-submodules
+      - id: mixed-line-ending
+        args: ["--fix=lf"]
+      - id: check-vcs-permalinks
+      - id: check-symlinks
+      - id: check-merge-conflict
+      - id: check-executables-have-shebangs
+      - id: check-case-conflict
+      - id: check-ast
+      - id: check-added-large-files
   - repo: local
     hooks:
       - id: rst
@@ -23,3 +40,9 @@ repos:
       - id: mypy
         args: [--strict]
         additional_dependencies: [pytest]
+  - repo: https://gitlab.com/bmares/check-json5
+    rev: v1.0.0
+    hooks:
+    - id: check-json5
+      types: [file]
+      files: ^.*\.json[c5]?$

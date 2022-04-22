@@ -38,7 +38,7 @@ include = [
 "prefer-nested-dup-tests" = "pytest_prefer_nested_dup_tests"
 
 [tool.poetry.dependencies]
-python = ">=3.8"
+python = ">=3.8,<4"
 pytest = "^7.1.1"
 
 [tool.poetry.dev-dependencies]
@@ -52,6 +52,7 @@ Pygments = "^2.11.2"
 restructuredtext-lint = "^1.4.0"
 pytest-html = "^3.1.1"
 pre-commit = "^2.18.1"
+pip-licenses = "^3.5.3"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
