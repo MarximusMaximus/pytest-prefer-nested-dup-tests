@@ -10,10 +10,23 @@ from typing import (
 
 
 class ExtendedItem(pytest.Item):
+    """
+    ExtendedItem adds prefer_nested_dup_tests__parent_depth to pytest.Item.
+    """
+
     prefer_nested_dup_tests__parent_depth: int
 
 
 def pytest_configure(config: _pytest.config.Config) -> None:
+    """
+    pytest_configure hook to forcibly enable keepduplicates option.
+
+    _extended_summary_
+
+    Args:
+        config (_pytest.config.Config): current pytest config to modify
+    """
+
     config.option.keepduplicates = True
 
 
@@ -22,6 +35,16 @@ def pytest_collection_modifyitems(
     config: _pytest.config.Config,
     items: List[ExtendedItem],
 ) -> None:
+    """
+    pytest_collection_modifyitems hook to drop non-package versions of duplicate
+    tests.
+
+    Args:
+        session (pytest.Session): current pytest Session
+        config (_pytest.config.Config): current pytest Config
+        items (List[ExtendedItem]): list of discovered tests
+    """
+
     session = session  # ignore unused var warning
 
     seen_best_nodes: Dict[str, ExtendedItem] = {}
@@ -29,8 +52,7 @@ def pytest_collection_modifyitems(
     for item in items:
         item.prefer_nested_dup_tests__parent_depth = 0
         parent: Optional[ExtendedItem] = cast(Optional[ExtendedItem], item.parent)
-        while parent != None:
-            parent = cast(ExtendedItem, parent)
+        while parent is not None:
             item.prefer_nested_dup_tests__parent_depth = (
                 item.prefer_nested_dup_tests__parent_depth + 1
             )
@@ -48,7 +70,8 @@ def pytest_collection_modifyitems(
 
     items[:] = new_items
 
-    # fix how many items we report in terminal output b/c we do not "deselect" our removed duplicates (intentionally)
+    # fix how many items we report in terminal output b/c we do not "deselect"
+    # our removed duplicates (intentionally)
     terminal_plugin = config.pluginmanager.get_plugin("terminalreporter")
     terminal_plugin._numcollected = len(items)
     terminal_plugin.report_collect()

@@ -1,3 +1,7 @@
+"""
+tests/conftest.py (pytest-prefer-nested-dup-tests)
+"""
+
 from typing import (
     Sequence,
     Union,
