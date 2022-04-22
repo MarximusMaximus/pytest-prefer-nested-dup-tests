@@ -53,6 +53,11 @@ restructuredtext-lint = "^1.4.0"
 pytest-html = "^3.1.1"
 pre-commit = "^2.18.1"
 pip-licenses = "^3.5.3"
+flake8 = "^4.0.1"
+flake8-bugbear = "^22.3.23"
+flake8-docstrings = "^1.6.0"
+flake8-commas = "^2.1.0"
+flake8-pyi = "^22.4.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -104,3 +109,28 @@ filterwarnings = [
 log_cli_level = "debug"
 testpaths = ["."]
 pythonpath = ["."]
+
+[tool.black]
+    target-version = [
+      'py38',
+      'py39',
+      'py310',
+    ]
+    line-length = 88
+    include = '\.pyi?$'
+    exclude = '''
+      /(
+          \.git
+        | \.hg
+        | \.mypy_cache
+        | \.tox
+        | \.venv
+        | _build
+        | buck-out
+        | build
+        | dist
+
+        # The following are specific to Black, you probably don't want those.
+        | blib2to3
+        | tests/data
+      )/'''
