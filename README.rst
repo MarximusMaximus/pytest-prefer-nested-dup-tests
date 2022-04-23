@@ -3,15 +3,44 @@ pytest-prefer-nested-dup-tests
 
 by Marximus Maximus (https://www.marximus.com)
 
+.. image:: https://github.com/MarximusMaximus/pytest-prefer-nested-dup-tests/workflows/main/badge.svg
+  :target: https://github.com/MarximusMaximus/pytest-prefer-nested-dup-tests/actions
+  :alt: Test Status
+
+.. TODO: coveralls.io
+.. .. image:: https://coveralls.io/repos/github/MarximusMaximus/pytest-prefer-nested-dup-tests/badge.svg?branch=main
+..    :target: https://coveralls.io/github/MarximusMaximus/pytest-prefer-nested-dup-tests?branch=main
+..    :alt: Coverage Status
+
+.. TODO: readthedocs.org
+.. .. image:: https://readthedocs.org/projects/pytest-prefer-nested-dup-tests/badge/?version=stable
+..    :target: https://pytest-prefer-nested-dup-tests.readthedocs.io/en/stable/?badge=stable
+..    :alt: Documentation Status
+
+.. TODO: readthedocs.org license
+.. .. image:: https://pytest-prefer-nested-dup-tests.readthedocs.io/en/stable/_static/license.svg
+..    :target: https://github.com/MarximusMaximus/pytest-prefer-nested-dup-tests/blob/main/LICENSE
+..    :alt: License: MIT
+
 .. image:: http://img.shields.io/pypi/v/pytest-prefer-nested-dup-tests.svg
    :target: https://pypi.python.org/pypi/pytest-prefer-nested-dup-tests
 
-.. image:: https://github.com/MarximusMaximus/pytest-prefer-nested-dup-tests/workflows/main/badge.svg
-  :target: https://github.com/MarximusMaximus/pytest-prefer-nested-dup-tests/actions
+.. image:: https://pepy.tech/badge/pytest-prefer-nested-dup-tests
+   :target: https://pepy.tech/project/pytest-prefer-nested-dup-tests
+   :alt: Downloads
+
+.. TODO: conda-forge
+.. .. image:: https://img.shields.io/conda/dn/conda-forge/pytest-prefer-nested-dup-tests.svg?label=conda-forge
+..    :target: https://anaconda.org/conda-forge/pytest-prefer-nested-dup-tests/
+..    :alt: conda-forge
 
 .. image:: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
    :target: https://github.com/pre-commit/pre-commit
    :alt: pre-commit
+
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+   :target: https://github.com/psf/black
+   :alt: Code style: black
 
 A Pytest plugin to drop duplicated tests during collection, but will prefer keeping nested packages.
 
