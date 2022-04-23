@@ -1,10 +1,18 @@
 name: main
 
-on: [
-  push,
-  pull_request,
-  workflow_dispatch,
-]
+on:
+  workflow_dispatch:
+    # any manual trigger
+  push:
+    branches:
+      # only for the branches specified below
+      - main
+      - 'release/**'
+      - 'feature/**'
+      - 'issue/**'
+      - '!user/**'  # explicitly no user/ branches [mostly a note that they exist]
+  pull_request:
+    # any pull request
 
 defaults:
   run:
