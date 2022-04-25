@@ -1,47 +1,79 @@
+.. |p| raw:: html
+
+  </p><p>
+
+.. |br| raw:: html
+
+  <br/>
+
 pytest-prefer-nested-dup-tests
 ==============================
 
 by Marximus Maximus (https://www.marximus.com)
 
+.. raw:: html
+
+   <div style="text-align:center">
+
 .. image:: https://github.com/MarximusMaximus/pytest-prefer-nested-dup-tests/workflows/main/badge.svg
   :target: https://github.com/MarximusMaximus/pytest-prefer-nested-dup-tests/actions
   :alt: Test Status
+  :align: center
 
 .. TODO: coveralls.io
 .. .. image:: https://coveralls.io/repos/github/MarximusMaximus/pytest-prefer-nested-dup-tests/badge.svg?branch=main
 ..    :target: https://coveralls.io/github/MarximusMaximus/pytest-prefer-nested-dup-tests?branch=main
 ..    :alt: Coverage Status
+..    :align: center
 ..
 .. TODO: readthedocs.org
 .. .. image:: https://readthedocs.org/projects/pytest-prefer-nested-dup-tests/badge/?version=stable
 ..    :target: https://pytest-prefer-nested-dup-tests.readthedocs.io/en/stable/?badge=stable
 ..    :alt: Documentation Status
+..    :align: center
 ..
 .. TODO: readthedocs.org license
 .. .. image:: https://pytest-prefer-nested-dup-tests.readthedocs.io/en/stable/_static/license.svg
 ..    :target: https://github.com/MarximusMaximus/pytest-prefer-nested-dup-tests/blob/main/LICENSE
 ..    :alt: License: MIT
+..    :align: center
+..    :align: center
 ..
 .. image:: http://img.shields.io/pypi/v/pytest-prefer-nested-dup-tests.svg
    :target: https://pypi.python.org/pypi/pytest-prefer-nested-dup-tests
    :alt: PyPI Version
+   :align: center
 
 .. image:: https://pepy.tech/badge/pytest-prefer-nested-dup-tests
    :target: https://pepy.tech/project/pytest-prefer-nested-dup-tests
    :alt: Downloads
-
+   :align: center
 .. TODO: conda-forge
 .. .. image:: https://img.shields.io/conda/dn/conda-forge/pytest-prefer-nested-dup-tests.svg?label=conda-forge
 ..    :target: https://anaconda.org/conda-forge/pytest-prefer-nested-dup-tests/
 ..    :alt: conda-forge
 ..
+
+|p|
+
 .. image:: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
    :target: https://github.com/pre-commit/pre-commit
    :alt: pre-commit
+   :align: center
 
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/psf/black
    :alt: Code style: black
+   :align: center
+.. TODO: #8 (add additional linter? isort)
+.. .. image:: https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336
+..    :target: https://pycqa.github.io/isort/
+..    :alt: Uses isort
+..    :align: center
+
+.. raw:: html
+
+   </div>
 
 A Pytest plugin to drop duplicated tests during collection, but will prefer keeping nested packages.
 
