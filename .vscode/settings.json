@@ -8,11 +8,13 @@
         "codeql",
         "conda",
         "Cookiecutter",
+        "cython",
         "detailyang",
         "docstrings",
         "goanpeca",
         "hackebrot",
         "htmlcov",
+        "isort",
         "luacheck",
         "makepyfile",
         "markdownlint",
@@ -105,14 +107,104 @@
             "italic": false
         },
         {
-            "tag": "shellcheck",
-            "color": "#666666",
+            "tag": "noqa:",
+            "color": "#9900CC",
             "strikethrough": false,
             "underline": false,
             "backgroundColor": "transparent",
-            "bold": false,
+            "bold": true,
             "italic": false
-        }
+        },
+        {
+            "tag": "type: ignore",
+            "color": "#9900CC",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "pragma: no branch",
+            "color": "#9900CC",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "pragma: no cover",
+            "color": "#9900CC",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "shellcheck",
+            "color": "#9900CC",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "#####",
+            "color": "#DDDDDD",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "#000000",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "=====",
+            "color": "#DDDDDD",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "#333333",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "-----",
+            "color": "#DDDDDD",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "#666666",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": ".....",
+            "color": "#DDDDDD",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "#999999",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "endregion ",
+            "color": "#7F7F7F",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "region ",
+            "color": "#009900",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": true,
+            "italic": false
+        },
     ],
     "coverage-gutters.showLineCoverage": true,
     "coverage-gutters.showRulerCoverage": true,
