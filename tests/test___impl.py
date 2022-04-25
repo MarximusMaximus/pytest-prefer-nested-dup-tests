@@ -2,12 +2,33 @@
 tests/test___impl.py (pytest-prefer-nested-dup-tests)
 """
 
+################################################################################
+#region Imports
+
+#===============================================================================
+#region stdlib
+
 import sys
 from typing import (
     Any,
 )
 
+#endregion stdlib
+#===============================================================================
+
+#endregion Imports
+################################################################################
+
+################################################################################
+#region Types
+
 PytestFixture = Any
+
+#endregion Types
+################################################################################
+
+################################################################################
+#region Tests
 
 
 def test___main(testdir: PytestFixture) -> None:
@@ -211,3 +232,6 @@ def test___toplevel_coverage(testdir: PytestFixture) -> None:
     import pytest_prefer_nested_dup_tests.__impl  # noqa: 401
 
     sys.modules["pytest_prefer_nested_dup_tests.__impl"] = old_module
+
+#endregion Tests
+################################################################################
