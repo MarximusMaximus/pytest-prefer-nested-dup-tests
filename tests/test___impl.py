@@ -220,17 +220,19 @@ def test___toplevel_coverage(testdir: PytestFixture) -> None:
 
     testdir = testdir  # ignore unused arg in sig
 
-    old_module = sys.modules["pytest_prefer_nested_dup_tests"]  # keep a reference to it
-    del sys.modules["pytest_prefer_nested_dup_tests"]  # hide it from python
-    import pytest_prefer_nested_dup_tests  # import it as if new
-
-    sys.modules["pytest_prefer_nested_dup_tests"] = old_module  # put it back
+    # keep a reference to it
+    old_module = sys.modules["pytest_prefer_nested_dup_tests"]
+    # hide it from python
+    del sys.modules["pytest_prefer_nested_dup_tests"]
+    # import it as if new
+    import pytest_prefer_nested_dup_tests  # noqa: 401
+    # put it back
+    sys.modules["pytest_prefer_nested_dup_tests"] = old_module
 
     # same as above, but for the __impl file
     old_module = sys.modules["pytest_prefer_nested_dup_tests.__impl"]
     del sys.modules["pytest_prefer_nested_dup_tests.__impl"]
     import pytest_prefer_nested_dup_tests.__impl  # noqa: 401
-
     sys.modules["pytest_prefer_nested_dup_tests.__impl"] = old_module
 
 #endregion Tests
