@@ -1,9 +1,10 @@
 repos:
 
-  # - repo: https://github.com/asottile/add-trailing-comma
-  #   rev: v2.2.3
-  #   hooks:
-  #   - id: add-trailing-comma
+  - repo: https://github.com/asottile/add-trailing-comma
+    rev: v2.2.3
+    hooks:
+    - id: add-trailing-comma
+      args: ["--py36-plus"]
 
   - repo: https://github.com/ambv/black
     rev: "22.3.0"
@@ -140,8 +141,6 @@ repos:
   - repo: https://github.com/jumanjihouse/pre-commit-hooks
     rev: "2.1.6"
     hooks:
-      - id: forbid-binary
-        exclude: ""
       - id: script-must-have-extension
       - id: script-must-not-have-extension
       - id: shellcheck
@@ -153,7 +152,7 @@ repos:
       - id: shell-lint
 
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.31.1
+    rev: "v0.31.1"
     hooks:
       - id: markdownlint
   ## alternative? additional?
@@ -195,7 +194,7 @@ repos:
 
   - repo: https://github.com/awebdeveloper/pre-commit-tslint
     # latest master as of 2022-04-25, commit date 2020-06-05
-    rev: '85cbb840e89401d6b4f9bbaa471529d303cccec3'
+    rev: "85cbb840e89401d6b4f9bbaa471529d303cccec3"
     hooks:
       - id: tslint
         args: ['--project','tsconfig.json','--type-check']
@@ -203,7 +202,7 @@ repos:
         # additional_dependencies: ['tslint@5.0.0', 'tslint-eslint-rules']
 
   - repo: https://github.com/noahsark769/xcodeproj-sort-pre-commit-hook
-    rev: v1.1.1
+    rev: "v1.1.1"
     hooks:
     - id: xcodeproj-sort
       args: [--groups-position=above]
@@ -213,68 +212,69 @@ repos:
     hooks:
       - id: gitlint
 
+  - repo: local
+    hooks:
+      - id: replace-unicode-non-breaking-spaces
+        name: replace unicode non-breaking space character U+00A0 aka M-BM-
+        language: system
+        entry: perl -pi* -e 's/\xc2\xa0/ /g && ($t = 1) && print STDERR $_; END{{exit
+            $t}}'
+        files: ''
+      - id: forbid-unicode-non-breaking-spaces
+        name: Detect unicode non-breaking space character U+00A0 aka M-BM-
+        language: system
+        entry: perl -ne 'print if $m = /\xc2\xa0/; $t ||= $m; END{{exit $t}}'
+        files: ''
+      - id: replace-en-dashes
+        name: replace the EXTREMELY confusing unicode character U+2013
+        language: system
+        entry: perl -pi* -e 's/\xe2\x80\x93/-/g && ($t = 1) && print STDERR $_; END{{exit
+            $t}}'
+        files: ''
+      - id: forbid-en-dashes
+        name: Detect the EXTREMELY confusing unicode character U+2013
+        language: system
+        entry: perl -ne 'print if $m = /\xe2\x80\x93/; $t ||= $m; END{{exit $t}}'
+        files: ''
 
-# -   repo: local
-#     hooks:
-#     -   id: forbid-unicode-non-breaking-spaces
-#         name: Detect unicode non-breaking space character U+00A0 aka M-BM-
-#         language: system
-#         entry: perl -ne 'print if $m = /\xc2\xa0/; $t ||= $m; END{{exit $t}}'
-#         files: ''
-#     -   id: remove-unicode-non-breaking-spaces
-#         name: Remove unicode non-breaking space character U+00A0 aka M-BM-
-#         language: system
-#         entry: perl -pi* -e 's/\xc2\xa0/ /g && ($t = 1) && print STDERR $_; END{{exit
-#             $t}}'
-#         files: ''
-#     -   id: forbid-en-dashes
-#         name: Detect the EXTREMELY confusing unicode character U+2013
-#         language: system
-#         entry: perl -ne 'print if $m = /\xe2\x80\x93/; $t ||= $m; END{{exit $t}}'
-#         files: ''
-#     -   id: remove-en-dashes
-#         name: Remove the EXTREMELY confusing unicode character U+2013
-#         language: system
-#         entry: perl -pi* -e 's/\xe2\x80\x93/-/g && ($t = 1) && print STDERR $_; END{{exit
-#             $t}}'
-#         files: ''
+  - repo: local
+    hooks:
+      - id: check-dash-syntax
+        name: Check Shell scripts syntax correctness
+        language: system
+        entry: bash -n --posix
+        files: ^.*\.sh$
 
-# -   repo: local
-#     hooks:
-#     -   id: check-bash-syntax
-#         name: Check Shell scripts syntax corectness
-#         language: system
-#         entry: bash -n
-#         files: \.sh$
+  - repo: local
+    hooks:
+      - id: force-JsonSlurperClassic
+        name: Ensure JsonSlurperClassic is used instead of non-serializable JsonSlurper
+        language: pygrep
+        entry: JsonSlurper[^C]
+        files: \.groovy$
 
-# -   repo: local
-#     hooks:
-#     -   id: force-JsonSlurperClassic
-#         name: Ensure JsonSlurperClassic is used instead of non-serializable JsonSlurper
-#         language: pygrep
-#         entry: JsonSlurper[^C]
-#         files: \.groovy$
+  # - repo: local
+  #   env:
+  #     JENKINS_URL:
+  #   hooks:
+  #       - id: Jenkinsfile-linter
+  #         name: Check Jenkinsfile following the scripted-pipeline syntax using Jenkins API
+  #         files: Jenkinsfile
+  #         language: system
+  #         entry: sh -c '! curl --silent $JENKINS_URL/job/MyPipelineName/job/master/1/replay/checkScriptCompile --user $JENKINS_USER:$JENKINS_TOKEN --data-urlencode value@Jenkinsfile | grep -F "\"status\":\"fail\""'
 
-# -   repo: local
-#     hooks:
-#         -   id: Jenkinsfile-linter
-#             name: Check Jenkinsfile following the scripted-pipeline syntax using Jenkins API
-#             files: Jenkinsfile
-#             language: system
-#             entry: sh -c '! curl --silent $JENKINS_URL/job/MyPipelineName/job/master/1/replay/checkScriptCompile --user $JENKINS_USER:$JENKINS_TOKEN --data-urlencode value@Jenkinsfile | grep -F "\"status\":\"fail\""'
-
-# -   repo: local
-#     hooks:
-#     -   id: css-forbid-px
-#         name: In CSS files, use rem or % over px
-#         language: pygrep
-#         entry: px
-#         files: \.css$
-#     -   id: ot-sanitize-fonts
-#         name: Calling ot-sanitise on otf/ttf/woff/woff2 font files
-#         language: system
-#         entry: sh -c 'type ot-sanitise >/dev/null && for font in "$@"; do echo "$font"; ot-sanitise "$font"; done || echo "WARNING Command ot-sanitise not found - skipping check"'
-#         files: \.(otf|ttf|woff|woff2)$
+  - repo: local
+    hooks:
+      - id: css-forbid-px
+        name: In CSS files, use rem or % over px
+        language: pygrep
+        entry: px
+        files: \.css$
+      # - id: ot-sanitize-fonts
+      #   name: Calling ot-sanitise on otf/ttf/woff/woff2 font files
+      #   language: system
+      #   entry: sh -c 'type ot-sanitise >/dev/null && for font in "$@"; do echo "$font"; ot-sanitise "$font"; done || echo "WARNING Command ot-sanitise not found - skipping check"'
+      #   files: \.(otf|ttf|woff|woff2)$
 
 # -   repo: local
 #     hooks:
