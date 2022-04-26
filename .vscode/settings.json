@@ -8,6 +8,7 @@
         "codeql",
         "conda",
         "Cookiecutter",
+        "curlylint",
         "cython",
         "detailyang",
         "docstrings",
@@ -42,6 +43,7 @@
         "softlinks",
         "stylua",
         "subpackage",
+        "whitespaces",
         "xcodeproj"
     ],
     "files.eol": "\n",
