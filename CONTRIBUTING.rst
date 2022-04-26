@@ -22,9 +22,9 @@ Development Environment First Time Setup
 
     $ poetry install
 
-6. Pin poetry based dependencies:
+.. 6. Pin poetry based dependencies:
 
-    $ poetry show | awk '{if ($1 !~ /six|packaging|pyparsing/ ) {print "pypi::" $1}}' >"$CONDA_PREFIX"/conda-meta/pinned
+..     $ poetry show |  awk '{if ($1 !~ /attrs|distlib|filelock|packaging|platformdirs|pyparsing|six|virtualenv|\.}/ ) {print "pypi::" $1}}' >"$CONDA_PREFIX"/conda-meta/pinned
 
 Development Environment Updating
 --------------------------------
@@ -37,9 +37,9 @@ Development Environment Updating
 
     $ poetry install
 
-3. Pin poetry based dependencies:
+.. 3. Pin poetry based dependencies:
 
-    $ poetry show | awk '{if ($1 !~ /six|packaging|pyparsing/ ) {print "pypi::" $1}}' >"$CONDA_PREFIX"/conda-meta/pinned
+..     $ poetry show |  awk '{if ($1 !~ /attrs|charset-normalizer|distlib|filelock|idna|importlib-metadata|keyring|packaging|pkginfo|platformdirs|pyparsing|requests|requests-toolbelt|six|urllib3|virtualenv|webencodings|zipp|\.}/ ) {print "pypi::" $1}}' >"$CONDA_PREFIX"/conda-meta/pinned
 
 
 Moving Forward Dependencies' Versions
