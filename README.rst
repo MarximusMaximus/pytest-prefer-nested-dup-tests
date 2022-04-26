@@ -1,19 +1,7 @@
-.. |p| raw:: html
-
-  </p><p>
-
-.. |br| raw:: html
-
-  <br/>
-
 pytest-prefer-nested-dup-tests
 ==============================
 
 by Marximus Maximus (https://www.marximus.com)
-
-.. raw:: html
-
-   <div style="text-align:center">
 
 .. image:: https://github.com/MarximusMaximus/pytest-prefer-nested-dup-tests/workflows/main/badge.svg
   :target: https://github.com/MarximusMaximus/pytest-prefer-nested-dup-tests/actions
@@ -54,8 +42,6 @@ by Marximus Maximus (https://www.marximus.com)
 ..    :alt: conda-forge
 ..
 
-|p|
-
 .. image:: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
    :target: https://github.com/pre-commit/pre-commit
    :alt: pre-commit
@@ -70,10 +56,6 @@ by Marximus Maximus (https://www.marximus.com)
 ..    :target: https://pycqa.github.io/isort/
 ..    :alt: Uses isort
 ..    :align: center
-
-.. raw:: html
-
-   </div>
 
 A Pytest plugin to drop duplicated tests during collection, but will prefer keeping nested packages.
 
