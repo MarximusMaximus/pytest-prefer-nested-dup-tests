@@ -31,7 +31,7 @@ Development Environment Updating
 
 1. Update conda env:
 
-    $ conda env update --name "${MY_DIR_BASENAME}" --file ./conda-environment.yml --prune -v
+    $ conda env update --name pytest-prefer-nested-dup-tests --file ./conda-environment.yml --prune -v
 
 2. Update additional dependencies via poetry:
 
