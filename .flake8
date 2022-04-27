@@ -27,6 +27,9 @@
         # whitespace before ',', ';', or ':'
         # (often used for readability)
         E203,
+        # block comment should start with '# '
+        # we have region headings that are multiline that do not
+        E265,
         # too many leading '#' for block comment
         # (used for region markers)
         E266,

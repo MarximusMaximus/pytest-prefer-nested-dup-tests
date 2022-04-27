@@ -1,6 +1,14 @@
-import pytest
-import _pytest.config
-import _pytest.fixtures
+"""
+pytest-prefer-nested-dup-tests/__impl.py
+see pytest-prefer-nested-dup-tests.__init__.py
+"""
+
+################################################################################
+#region Imports
+
+#===============================================================================
+#region stdlib
+
 from typing import (
     cast,
     Dict,
@@ -8,7 +16,27 @@ from typing import (
     Optional,
 )
 
+#endregion stdlib
+#===============================================================================
 
+#===============================================================================
+#region third party
+
+import _pytest.config
+import _pytest.fixtures
+import pytest
+
+#endregion third party
+#===============================================================================
+
+#endregion Imports
+################################################################################
+
+################################################################################
+#region Public Classes
+
+
+#===============================================================================
 class ExtendedItem(pytest.Item):
     """
     ExtendedItem adds prefer_nested_dup_tests__parent_depth to pytest.Item.
@@ -16,7 +44,14 @@ class ExtendedItem(pytest.Item):
 
     prefer_nested_dup_tests__parent_depth: int
 
+#endregion Public Classes
+################################################################################
 
+################################################################################
+#region Public Hooks
+
+
+#===============================================================================
 def pytest_configure(config: _pytest.config.Config) -> None:
     """
     pytest_configure hook to forcibly enable keepduplicates option.
@@ -30,6 +65,7 @@ def pytest_configure(config: _pytest.config.Config) -> None:
     config.option.keepduplicates = True
 
 
+#===============================================================================
 def pytest_collection_modifyitems(
     session: pytest.Session,
     config: _pytest.config.Config,
@@ -75,3 +111,6 @@ def pytest_collection_modifyitems(
     terminal_plugin = config.pluginmanager.get_plugin("terminalreporter")
     terminal_plugin._numcollected = len(items)
     terminal_plugin.report_collect()
+
+#endregion Public Hooks
+################################################################################
