@@ -155,11 +155,6 @@ repos:
     rev: "v0.31.1"
     hooks:
       - id: markdownlint
-  # ## alternative? additional?
-  # - repo: https://github.com/markdownlint/markdownlint
-  #   rev: "v0.11.0"
-  #   hooks:
-  #     - id: markdownlint
 
   - repo: https://github.com/thibaudcolas/curlylint
     rev: "v0.13.1"
