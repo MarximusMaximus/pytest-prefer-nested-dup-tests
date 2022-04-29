@@ -13,14 +13,21 @@ name: "CodeQL"
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      # only for the branches specified below
+      - main
+      - 'release/**'
+      - 'feature/**'
+      - 'issue/**'
+      - '!user/**'  # explicitly no user/ branches [mostly a note that they exist]
   pull_request:
-    # The branches below must be a subset of the branches above
-    branches: [ main ]
+    # pull requests for any branch
   schedule:
+    # At 00:33 on Saturday. (https://crontab.guru/#33_0_*_*_6)
     - cron: '33 0 * * 6'
   workflow_dispatch:
-    branches: [ main ]
+    # any manual trigger
+
 
 defaults:
   run:
