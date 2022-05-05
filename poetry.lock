@@ -368,7 +368,7 @@ testing = ["pytest", "pytest-benchmark"]
 
 [[package]]
 name = "pre-commit"
-version = "2.18.1"
+version = "2.19.0"
 description = "A framework for managing and maintaining multi-language pre-commit hooks."
 category = "dev"
 optional = false
@@ -703,7 +703,7 @@ testing = ["coverage (>=4)", "coverage-enable-subprocess (>=1)", "flaky (>=3)", 
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8,<4"
-content-hash = "21d7b572b4a2f7bd30a4070efabd8dcfe0c886bcac3e5b1ade09108c58e6e5b5"
+content-hash = "181165218e41d9ad39160350a6cd67d604ecc1250130b88fdbccaa990364f540"
 
 [metadata.files]
 ast-decompiler = [
@@ -920,8 +920,8 @@ pluggy = [
     {file = "pluggy-1.0.0.tar.gz", hash = "sha256:4224373bacce55f955a878bf9cfa763c1e360858e330072059e10bad68531159"},
 ]
 pre-commit = [
-    {file = "pre_commit-2.18.1-py2.py3-none-any.whl", hash = "sha256:02226e69564ebca1a070bd1f046af866aa1c318dbc430027c50ab832ed2b73f2"},
-    {file = "pre_commit-2.18.1.tar.gz", hash = "sha256:5d445ee1fa8738d506881c5d84f83c62bb5be6b2838e32207433647e8e5ebe10"},
+    {file = "pre_commit-2.19.0-py2.py3-none-any.whl", hash = "sha256:10c62741aa5704faea2ad69cb550ca78082efe5697d6f04e5710c3c229afdd10"},
+    {file = "pre_commit-2.19.0.tar.gz", hash = "sha256:4233a1e38621c87d9dda9808c6606d7e7ba0e087cd56d3fe03202a01d2919615"},
 ]
 pre-commit-hooks-safety = []
 ptable = [
