@@ -21,18 +21,27 @@
         D400,
         ; # closing bracket is missing indentation
         ; E133,
-        # multiple spaces after ','
-        # (often used for readability)
-        E241,
         # whitespace before ',', ';', or ':'
         # (often used for readability)
         E203,
+        # multiple spaces after ','
+        # (often used for readability)
+        E241,
         # block comment should start with '# '
         # we have region headings that are multiline that do not
         E265,
         # too many leading '#' for block comment
         # (used for region markers)
         E266,
+        # multiple spaces before keyword
+        # (we use multiple spaces for alignment in many places)
+        E272,
+        # two lines before definitions
+        # (conflicts with region directives)
+        E302, E305,
+        # module level import not at top of file
+        # (file preamble comes before includes)
+        E402,
         ; # 'from module import *' used; unable to detect undefined names
         ; F403,
         # line break before binary operator

@@ -6,19 +6,6 @@ repos:
     - id: add-trailing-comma
       args: ["--py36-plus"]
 
-  - repo: https://github.com/ambv/black
-    rev: "22.3.0"
-    hooks:
-      - id: black
-        args: [--safe, --verbose, --diff, --color]
-
-  - repo: https://github.com/asottile/blacken-docs
-    rev: "v1.12.1"
-    hooks:
-    -   id: blacken-docs
-        args: ["--line-length=88","--target-version=py38"]
-        additional_dependencies: [black==22.3.0]
-
   # TODO: #8 (add additional linter? isort)
   # - repo: https://github.com/pycqa/isort
   #   rev: "5.10.1"
@@ -40,14 +27,20 @@ repos:
     hooks:
       - id: flake8
         additional_dependencies: [
-          flake8-bugbear,
-          flake8_commas,
-          flake8-docstrings,
-          # disabled b/c does not behave like regular mypy,
-          #   just use regular mypy
-          # flake8-mypy,
-          flake8-pyi,
-          pytest,
+            # various potential bug checker
+            flake8-bugbear,
+            # trailing commas and such
+            flake8_commas,
+            # does pydocstyle -- style checks inside docstrings
+            flake8-docstrings,
+            # disabled b/c does not behave like regular mypy,
+            #   just use regular mypy
+            # flake8-mypy,
+            # python interface files
+            flake8-pyi,
+            # dependencies for libraries needed to check against
+            pytest,
+            pytest-subprocess,
         ]
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -73,6 +66,12 @@ repos:
       - id: check-ast
       - id: check-added-large-files
 
+  - repo: https://github.com/PyCQA/bandit
+    rev: "1.7.4"
+    hooks:
+      - id: bandit
+        files: ^src/
+
   - repo: local
     hooks:
       - id: rst
@@ -92,8 +91,12 @@ repos:
     rev: "v0.902"
     hooks:
       - id: mypy
-        args: ["--strict"]
-        additional_dependencies: [pytest]
+        args: ["--strict", "--show-error-codes"]
+        additional_dependencies: [
+            # dependencies for libraries needed to check against
+            pytest,
+            pytest-subprocess,
+        ]
 
   - repo: https://gitlab.com/bmares/check-json5
     rev: "v1.0.0"
@@ -106,7 +109,8 @@ repos:
     rev: "v1.2.4"
     hooks:
     - id: python-safety-dependencies-check
-      files: pyproject.toml
+      files: ^pyproject\.toml
+      additional_dependencies: [safety<2]
 
   - repo: https://github.com/pre-commit/pygrep-hooks
     rev: "v1.9.0"
@@ -137,19 +141,6 @@ repos:
     rev: "v0.8.0.4"
     hooks:
       - id: shellcheck
-  # alternative? additional?
-  - repo: https://github.com/jumanjihouse/pre-commit-hooks
-    rev: "2.1.6"
-    hooks:
-      - id: script-must-have-extension
-      - id: script-must-not-have-extension
-      - id: shellcheck
-      - id: shfmt
-  # alternative? additional?
-  - repo: https://github.com/detailyang/pre-commit-shell
-    rev: "v1.0.6"
-    hooks:
-      - id: shell-lint
 
   - repo: https://github.com/igorshubovych/markdownlint-cli
     rev: "v0.31.1"
@@ -237,7 +228,7 @@ repos:
       - id: check-dash-syntax
         name: Check Shell scripts syntax correctness
         language: system
-        entry: bash -n --posix
+        entry: bash --posix -n
         files: ^.*\.sh$
 
   - repo: local
