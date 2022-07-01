@@ -1,4 +1,4 @@
- [flake8]
+[flake8]
     indent-size = 4
     max-line-length = 89
     max-doc-length = 89
