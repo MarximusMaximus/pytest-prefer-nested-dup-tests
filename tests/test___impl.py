@@ -205,7 +205,7 @@ def test_nested_package(testdir: PytestFixture) -> None:
 def test___toplevel_coverage(testdir: PytestFixture) -> None:
     """
     test___toplevel_coverage is only to allow coverage.py to see the top level and
-       outermost scope of our code
+        outermost scope of our code
 
     Args:
         testdir (PytestFixture):
