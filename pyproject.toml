@@ -9,7 +9,7 @@ maintainers = ["Marximus Maximus <marximus@marximus.com>"]
 readme = "README.md"
 homepage = "https://github.com/MarximusMaximus/pytest-prefer-nested-dup-tests"
 repository = "https://github.com/MarximusMaximus/pytest-prefer-nested-dup-tests"
-documentation = "https://github.com/MarximusMaximus/pytest-prefer-nested-dup-test"
+documentation = "https://github.com/MarximusMaximus/pytest-prefer-nested-dup-tests"
 classifiers = [
     "Development Status :: 4 - Beta",
     "Framework :: Pytest",
