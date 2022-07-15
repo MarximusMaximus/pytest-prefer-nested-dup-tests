@@ -537,7 +537,7 @@ pytest = ">=7.1.1,<8.0.0"
 
 [[package]]
 name = "pytest-sugar"
-version = "0.9.4"
+version = "0.9.5"
 description = "pytest-sugar is a plugin for pytest that changes the default look and feel of pytest (e.g. progressbar, show tests that fail instantly)."
 category = "dev"
 optional = false
@@ -703,7 +703,7 @@ testing = ["coverage (>=4)", "coverage-enable-subprocess (>=1)", "flaky (>=3)", 
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8,<4"
-content-hash = "d73b1cc1f3dc97a1bcb32607122f3bfdd0202e10d639201787613dab2e145914"
+content-hash = "de38034dfd0c51af268266d20449a16abee772dbfc909783d03139224827b317"
 
 [metadata.files]
 ast-decompiler = [
@@ -972,7 +972,8 @@ pytest-metadata = [
     {file = "pytest_metadata-2.0.0-py3-none-any.whl", hash = "sha256:e25f1a77ed02baf1d83911604247a70d60d7dcb970aa12be38e1ed58d4d38e65"},
 ]
 pytest-sugar = [
-    {file = "pytest-sugar-0.9.4.tar.gz", hash = "sha256:b1b2186b0a72aada6859bea2a5764145e3aaa2c1cfbb23c3a19b5f7b697563d3"},
+    {file = "pytest-sugar-0.9.5.tar.gz", hash = "sha256:eea78b6f15b635277d3d90280cd386d8feea1cab0f9be75947a626e8b02b477d"},
+    {file = "pytest_sugar-0.9.5-py2.py3-none-any.whl", hash = "sha256:3da42de32ce4e1e95b448d61c92804433f5d4058c0a765096991c2e93d5a289f"},
 ]
 pyyaml = [
     {file = "PyYAML-6.0-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:d4db7c7aef085872ef65a8fd7d6d09a14ae91f691dec3e87ee5ee0539d516f53"},
