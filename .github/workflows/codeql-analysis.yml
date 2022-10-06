@@ -51,7 +51,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3.1.0
 
       - name: Setup miniforge
         uses: conda-incubator/setup-miniconda@v2.1.1
