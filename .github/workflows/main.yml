@@ -102,7 +102,7 @@ jobs:
           sed -i.old 's/  - python=.*/  - python=${{ matrix.python-version }}/' ./conda-environment.yml
 
       - name: Setup miniforge
-        uses: conda-incubator/setup-miniconda@v2.1.1
+        uses: conda-incubator/setup-miniconda@v2.2.0
         with:
           installer-url: https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-${{ matrix.conda-forge-os }}-${{ matrix.conda-forge-arch }}.${{ matrix.conda-forge-ext }}
           allow-softlinks: true
@@ -171,7 +171,7 @@ jobs:
           echo ARCH: ${{ runner.arch }}
 
       - name: Setup miniforge
-        uses: conda-incubator/setup-miniconda@v2.1.1
+        uses: conda-incubator/setup-miniconda@v2.2.0
         with:
           installer-url: https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-X86_64.sh
           allow-softlinks: true
@@ -230,7 +230,7 @@ jobs:
           echo ARCH: ${{ runner.arch }}
 
       - name: Setup miniforge
-        uses: conda-incubator/setup-miniconda@v2.1.1
+        uses: conda-incubator/setup-miniconda@v2.2.0
         with:
           installer-url: https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-X86_64.sh
           allow-softlinks: true
@@ -331,7 +331,7 @@ jobs:
           echo ARCH: ${{ runner.arch }}
 
       - name: Setup miniforge
-        uses: conda-incubator/setup-miniconda@v2.1.1
+        uses: conda-incubator/setup-miniconda@v2.2.0
         with:
           installer-url: https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-X86_64.sh
           allow-softlinks: true
